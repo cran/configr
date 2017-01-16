@@ -7,10 +7,10 @@
 read.config(file = "config.json", encoding = getOption("encoding"))
 }
 \arguments{
-\item{file, }{Configuration file to read from (defaults to 'config.json') 
+\item{file}{Configuration file to read from (defaults to 'config.json') 
 'JSON/INI/YAML format file.}
 
-\item{encoding, }{Encoding of filepath parameter, will default to system encoding if not specifield}
+\item{encoding}{Encoding of filepath parameter, will default to system encoding if not specifield.}
 }
 \value{
 All values as a list.
@@ -21,5 +21,12 @@ Read from the file (JSON/INI/YAML be supported), retreiving all values as a list
 \examples{
 config.json <- system.file('extdata', 'config.json', package='configr')
 config <- read.config(file=config.json)
+}
+\seealso{
+\code{\link[jsonlite]{fromJSON}} JSON file will read by this
+
+\code{\link[ini]{read.ini}} INI file will read by this
+
+\code{\link[yaml]{yaml.load_file}} YAML file will read by this
 }
 

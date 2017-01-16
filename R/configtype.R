@@ -1,7 +1,9 @@
 #' Function to check wheather file is json format 
 #'
-#' @param file, filename to be coerced or tested 
-#' @param encoding, Encoding of filepath parameter, will default to system encoding if not specifield 
+#' @param file filename to be coerced or tested 
+#' @param encoding Encoding of filepath parameter, will default to system encoding if not specifield 
+#' @seealso
+#' \code{\link{is.ini.file}}/\code{\link{is.yaml.file}}
 #' @return TRUE/FALSE 
 #' @export
 #' @examples
@@ -25,8 +27,10 @@ is.json.file <- function(file, encoding = getOption("encoding")) {
 
 #' Function to check wheather file is ini format 
 #'
-#' @param file, filename to be coerced or tested 
-#' @param encoding, Encoding of filepath parameter, will default to system encoding if not specifield 
+#' @param file filename to be coerced or tested 
+#' @param encoding Encoding of filepath parameter, will default to system encoding if not specifield 
+#' @seealso
+#' \code{\link{is.json.file}}/\code{\link{is.yaml.file}}
 #' @return TRUE/FALSE 
 #' @export
 #' @examples
@@ -47,8 +51,10 @@ is.ini.file <- function(file, encoding = getOption("encoding")) {
 
 #' Function to check wheather file is YAML format 
 #'
-#' @param file, filename to be coerced or tested 
-#' @param encoding, Encoding of filepath parameter, will default to system encoding if not specifield 
+#' @param file filename to be coerced or tested 
+#' @param encoding Encoding of filepath parameter, will default to system encoding if not specifield 
+#' @seealso
+#' \code{\link{is.json.file}}/\code{\link{is.ini.file}}
 #' @return TRUE/FALSE 
 #' @export
 #' @examples
@@ -75,12 +81,14 @@ is.yaml.file <- function(file, encoding = getOption("encoding")) {
   }
 }
 
-#' Get config file type:json/ini/yaml retreiving json/ini/yaml 
+#' Get config file type retreiving json/ini/yaml or FALSE
 #'
-#' @param file, Configuration file to read from (defaults to 'config.json') 
+#' @param file Configuration file to read from (defaults to 'config.json') 
 #' 'JSON/INI/YAML format file. 
-#' @param encoding, Encoding of filepath parameter, will default to system encoding if not specifield 
-#' @return json/ini/yaml 
+#' @param encoding Encoding of filepath parameter, will default to system encoding if not specifield 
+#' @seealso
+#' \code{\link{is.json.file}}/\code{\link{is.ini.file}}\code{\link{is.yaml.file}}/
+#' @return json/ini/yaml or FALSE 
 #' @export
 #' @examples
 #' config.json <- system.file('extdata', 'config.json', package='configr')

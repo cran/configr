@@ -56,7 +56,7 @@ You can install this package directly from CRAN by running (from within R):
 # Usage
 
 
-    #Read in R as a list (json/yaml/ini be suported)
+    #Get filepath of configuration files
     config.json <- system.file('extdata', 'config.json', package='configr')
     config.yml <- system.file('extdata', 'config.yml', package='configr')
 	config.ini <- system.file('extdata', 'config.ini', package='configr')
@@ -71,6 +71,7 @@ You can install this package directly from CRAN by running (from within R):
     yml <- get.config.type(config.yml) 
     ini <- get.config.type(config.ini) 
 
+    #Read in R as a list (json/yaml/ini be suported)
 	json.list <- read.config(config.json)
 	yml.list <- read.config(config.yml)
 	ini.list <- read.config(config.ini)
@@ -97,6 +98,9 @@ You can install this package directly from CRAN by running (from within R):
 	
 	#Write config in file 
 	list.test <- list(a=c(123,456))
-	write.config(list.test, "/tmp/test.json", write.type = "json")
-	write.config(list.test, "/tmp/test.yaml", write.type = "yaml")
-	write.config(list.test, "/tmp/test.ini", write.type = "ini")
+    out.fn <- sprintf("%s/test.json", tempdir())
+	write.config(list.test, out.fn, write.type = "json")
+    out.fn <- sprintf("%s/test.yaml", tempdir())
+	write.config(list.test, out.fn, write.type = "yaml")
+    out.fn <- sprintf("%s/test.ini", tempdir())
+	write.config(list.test, out.fn, write.type = "ini")

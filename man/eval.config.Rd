@@ -3,31 +3,38 @@
 \name{eval.config}
 \alias{eval.config}
 \title{Read from the currently active configuration (JSON/INI/YAML be supported), 
-'retreiving either a single named value or all values as a list.}
+'retreiving either a single named value or all values as a config obj which 
+have 'config', 'configtype', 'file' 'property.}
 \usage{
 eval.config(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
   file = "config.json", encoding = getOption("encoding"))
 }
 \arguments{
-\item{value, }{Name of value (NULL to read all values)}
+\item{value}{Name of value (NULL to read all values)}
 
-\item{config, }{Name of configuration to read from. Defaults to the value of 
+\item{config}{Name of configuration to read from. Defaults to the value of 
 'the R_CONFIG_NAME environment variable ('default' if the variable does not exist).}
 
-\item{file, }{Configuration file to read from (defaults to 'config.json') 
+\item{file}{Configuration file to read from (defaults to 'config.json') 
 'JSON/INI/YAML format file.}
 
-\item{encoding, }{Encoding of filepath parameter, will default to system encoding if not specifield}
+\item{encoding}{Encoding of filepath parameter, will default to system encoding if not specifield}
 }
 \value{
 Either a single value or all values as a list.
 }
 \description{
 Read from the currently active configuration (JSON/INI/YAML be supported), 
-'retreiving either a single named value or all values as a list.
+'retreiving either a single named value or all values as a config obj which 
+have 'config', 'configtype', 'file' 'property.
 }
 \examples{
 config.json <- system.file('extdata', 'config.json', package='configr')
 config <- eval.config(file=config.json)
+}
+\seealso{
+\code{\link{read.config}} read config by this 
+
+\code{\link{eval.config.merge}} which can merge multiple parameter sets by groups
 }
 

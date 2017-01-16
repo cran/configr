@@ -7,9 +7,9 @@
 is.yaml.file(file, encoding = getOption("encoding"))
 }
 \arguments{
-\item{file, }{filename to be coerced or tested}
+\item{file}{filename to be coerced or tested}
 
-\item{encoding, }{Encoding of filepath parameter, will default to system encoding if not specifield}
+\item{encoding}{Encoding of filepath parameter, will default to system encoding if not specifield}
 }
 \value{
 TRUE/FALSE
@@ -24,5 +24,8 @@ config.yaml <- system.file('extdata', 'config.yaml', package='configr')
 print(is.yaml.file(config.yaml))
 print(is.json.file(config.json))
 print(is.ini.file(config.ini))
+}
+\seealso{
+\code{\link{is.json.file}}/\code{\link{is.ini.file}}
 }
 

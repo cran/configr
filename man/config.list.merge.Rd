@@ -7,9 +7,9 @@
 config.list.merge(list.left = list(), list.right = list())
 }
 \arguments{
-\item{list.left, }{one list be merged left}
+\item{list.left}{One list be merged left}
 
-\item{list.right, }{one list be merged right}
+\item{list.right}{One list be merged right}
 }
 \value{
 a list
@@ -25,5 +25,8 @@ config.list.merge(list.left, list.right)
 list.left <- list(a=c(123,456))
 list.right <- list(a=c(4,5,6)) 
 config.list.merge(list.left, list.right)
+}
+\seealso{
+\code{\link[config]{merge}} call in this function
 }
 

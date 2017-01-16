@@ -2,24 +2,27 @@
 % Please edit documentation in R/configtype.R
 \name{get.config.type}
 \alias{get.config.type}
-\title{Get config file type:json/ini/yaml retreiving json/ini/yaml}
+\title{Get config file type retreiving json/ini/yaml or FALSE}
 \usage{
 get.config.type(file = "config.json", encoding = getOption("encoding"))
 }
 \arguments{
-\item{file, }{Configuration file to read from (defaults to 'config.json') 
+\item{file}{Configuration file to read from (defaults to 'config.json') 
 'JSON/INI/YAML format file.}
 
-\item{encoding, }{Encoding of filepath parameter, will default to system encoding if not specifield}
+\item{encoding}{Encoding of filepath parameter, will default to system encoding if not specifield}
 }
 \value{
-json/ini/yaml
+json/ini/yaml or FALSE
 }
 \description{
-Get config file type:json/ini/yaml retreiving json/ini/yaml
+Get config file type retreiving json/ini/yaml or FALSE
 }
 \examples{
 config.json <- system.file('extdata', 'config.json', package='configr')
 get.config.type(file=config.json)
+}
+\seealso{
+\code{\link{is.json.file}}/\code{\link{is.ini.file}}\code{\link{is.yaml.file}}/
 }
 

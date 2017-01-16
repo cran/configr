@@ -2,24 +2,27 @@
 % Please edit documentation in R/read.R
 \name{eval.config.groups}
 \alias{eval.config.groups}
-\title{Get config file groups}
+\title{Get config file parameter groups}
 \usage{
 eval.config.groups(file = "config.json", encoding = getOption("encoding"))
 }
 \arguments{
-\item{file, }{Configuration file to read from (defaults to 'config.json') 
+\item{file}{Configuration file to read from (defaults to 'config.json') 
 'JSON/INI/YAML format file.}
 
-\item{encoding, }{Encoding of filepath parameter, will default to system encoding if not specifield}
+\item{encoding}{Encoding of filepath parameter, will default to system encoding if not specifield}
 }
 \value{
 a character vector including the groups infomation of configure file
 }
 \description{
-Get config file groups
+Get config file parameter groups
 }
 \examples{
 config.json <- system.file('extdata', 'config.json', package='configr')
 eval.config.groups(config.json)
+}
+\seealso{
+\code{\link{eval.config.merge}} which use this get all of parameter sets groups of config file.
 }
 
