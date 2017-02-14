@@ -1,37 +1,54 @@
 #' Merge config parameter sets by groups.
 #'
-#' @param file Configuration file to read from (defaults to 'config.json') 
-#' 'JSON/INI/YAML format file. 
-#' @param encoding Encoding of filepath parameter, will default to system encoding if not specifield 
+#' @param file File name of configuration file to read from. Defaults to the value of
+#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' variable does not exist and JSON/INI/YAML/TOML format only)
+#' @param ... Arguments for \code{\link{get.config.type}}, 
+#' \code{\link{eval.config.groups}}, \code{\link{eval.config}}
 #' @param groups Need be merged parameter sets, eg. groups=c('default', 'version'), will 
 #' default to all of config groups
 #' @seealso
 #' \code{\link{eval.config.groups}} which only get all of the mainly parameter sets name in config file, 
 #' \code{\link{read.config}} which only read from a config as a list,
 #' \code{\link{eval.config}} which only read one groups as config obj or a value from config file.
-#' @return a list 
+#' @return A list or logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file
 #' @export
 #' @examples
 #' config.json <- system.file('extdata', 'config.json', package='configr')
+#' config.ini <- system.file('extdata', 'config.ini', package='configr')
+#' config.yaml <- system.file('extdata', 'config.yaml', package='configr')
+#' config.toml <- system.file('extdata', 'config.toml', package='configr')
 #' eval.config.merge(config.json)
-eval.config.merge <- function(file = "config.json", groups = NULL, encoding = getOption("encoding")) {
+#' eval.config.merge(config.ini)
+#' eval.config.merge(config.yaml)
+#' eval.config.merge(config.toml)
+eval.config.merge <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), 
+  groups = NULL, ...) {
   config.dat <- list()
-  groups.all <- eval.config.groups(file = file, encoding = encoding)
-  config.type <- get.config.type(file = file, encoding = encoding)
+  groups.all <- eval.config.groups(file = file, ...)
+  config.type <- get.config.type(file = file, ...)
   if (is.logical(groups.all) && groups.all == FALSE) {
     return(FALSE)
   }
   if (is.null(groups)) {
     for (i in groups.all) {
-      config.tmp <- eval.config(file = file, config = i)
-      config.dat <- config.list.merge(config.dat, config.tmp)
+      config.tmp <- eval.config(file = file, config = i, ...)
+      if (!is.list(config.tmp)) {
+        config.tmp <- as.list(config.tmp)
+        names(config.tmp) <- i
+      }
+      config.dat <- config.list.merge(list.left = config.dat, list.right = config.tmp)
     }
     attr(config.dat, "config") <- groups.all
   } else {
     groups <- groups[groups %in% groups.all]
     for (i in groups) {
-      config.tmp <- eval.config(file = file, config = i)
-      config.dat <- config.list.merge(config.dat, config.tmp)
+      config.tmp <- eval.config(file = file, config = i, ...)
+      if (!is.list(config.tmp)) {
+        config.tmp <- as.list(config.tmp)
+        names(config.tmp) <- i
+      }
+      config.dat <- config.list.merge(list.left = config.dat, list.right = config.tmp)
       attr(config.dat, "config") <- groups
     }
   }
@@ -46,7 +63,7 @@ eval.config.merge <- function(file = "config.json", groups = NULL, encoding = ge
 #' @param list.right One list be merged right 
 #' @seealso
 #' \code{\link[config]{merge}} call in this function
-#' @return a list 
+#' @return A list 
 #' @export
 #' @examples
 #' config.json <- system.file('extdata', 'config.json', package='configr')
@@ -58,7 +75,7 @@ eval.config.merge <- function(file = "config.json", groups = NULL, encoding = ge
 #' config.list.merge(list.left, list.right)
 config.list.merge <- function(list.left = list(), list.right = list()) {
   if (!is.list(list.left) | !is.list(list.right)) {
-    stop("list.left or list.left must be list type!")
+    warning("list.left or list.left must be list type!")
   }
-  config::merge(list.left, list.right)
+  list.merge(list.left, list.right)
 }

@@ -1,84 +1,99 @@
-#' Read from the file (JSON/INI/YAML be supported), retreiving all values as a list.
+#' Read from the file (JSON/INI/YAML/TOML be supported), retreiving all values as a list.
 #'
-#' @param file Configuration file to read from (defaults to 'config.json') 
-#' 'JSON/INI/YAML format file. 
-#' @param encoding Encoding of filepath parameter, will default to system encoding if not specifield.
+#' @param file File name of configuration file to read from. Defaults to the value of
+#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' variable does not exist and JSON/INI/YAML/TOML format only)
+#' @param ... Arguments for \code{\link{get.config.type}}, 
+#' \code{\link[jsonlite]{fromJSON}}, \code{\link[ini]{read.ini}},
+#' \code{\link[yaml]{yaml.load_file}}, \code{\link[RcppTOML]{parseTOML}}, 
+#' \code{\link{readLines}}
 #' @seealso
 #' \code{\link[jsonlite]{fromJSON}} JSON file will read by this
 #'
 #' \code{\link[ini]{read.ini}} INI file will read by this
 #'
 #' \code{\link[yaml]{yaml.load_file}} YAML file will read by this
-#' @return All values as a list.  
+#'
+#' \code{\link[RcppTOML]{parseTOML}} TOML file will read by this
+#' @return All values as a list or 
+#' logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file 
 #' @export
 #' @examples
 #' config.json <- system.file('extdata', 'config.json', package='configr')
 #' config <- read.config(file=config.json)
-read.config <- function(file = "config.json", encoding = getOption("encoding")) {
-  if (is.character(file) && !file.exists(file)) {
+read.config <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), ...) {
+  status <- check.file.parameter(file)
+  if (status == FALSE) {
     return(FALSE)
   }
-  file.type <- get.config.type(file = file, encoding = encoding)
+  file.type <- get.config.type(file = file, ...)
   if (!is.character(file.type)) {
     return(FALSE)
   }
-  if (file.type == "json") {
-    config.dat <- jsonlite::fromJSON(paste(readLines(file, encoding = encoding), 
-      collapse = ""))
-  } else if (file.type == "ini") {
-    config.dat <- ini::read.ini(filepath = file, encoding = encoding)
-  } else if (file.type == "yaml") {
-    config.dat <- yaml::yaml.load_file(input = file)
-  }
-  return(config.dat)
+  config.list <- get.config.list(file = file, file.type = file.type, ...)
+  return(config.list)
 }
 
-#' Read from the currently active configuration (JSON/INI/YAML be supported), 
+#' Read from the currently active configuration (JSON/INI/YAML/TOML be supported), 
 #' 'retreiving either a single named value or all values as a config obj which 
 #' have 'config', 'configtype', 'file' 'property.
 #'
+#' @param file File name of configuration file to read from. Defaults to the value of
+#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' variable does not exist and JSON/INI/YAML/TOML format only) 
 #' @param value Name of value (NULL to read all values)
 #' @param config Name of configuration to read from. Defaults to the value of 
-#' 'the R_CONFIG_NAME environment variable ('default' if the variable does not exist). 
-#' @param file Configuration file to read from (defaults to 'config.json') 
-#' 'JSON/INI/YAML format file. 
-#' @param encoding Encoding of filepath parameter, will default to system encoding if not specifield 
+#' 'the R_CONFIG_ACTIVE environment variable ('default' if the variable does not exist). 
+#' @param ... Arguments for \code{\link{read.config}}
 #' @seealso
 #' \code{\link{read.config}} read config by this 
 #'
 #' \code{\link{eval.config.merge}} which can merge multiple parameter sets by groups
-#' @return Either a single value or all values as a list.  
+#' @return Either a single value or all values as a list or 
+#' logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file
 #' @examples
 #' config.json <- system.file('extdata', 'config.json', package='configr')
 #' config <- eval.config(file=config.json)
 #' @export
 eval.config <- function(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "default"), 
-  file = "config.json", encoding = getOption("encoding")) {
-  config.dat <- read.config(file, encoding = encoding)
-  if (is.logical(config.dat) && config.dat == FALSE) {
+  file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), ...) {
+  status <- check.file.parameter(file)
+  if (status == FALSE) {
     return(FALSE)
   }
-  config.dat <- get.config.value(value, config, file, config.dat)
-  return(config.dat)
+  config.list <- read.config(file = file, ...)
+  if (is.logical(config.list) && config.list == FALSE) {
+    return(FALSE)
+  }
+  config.list <- get.config.value(file = file, value = value, config = config, 
+    config.list = config.list, ...)
+  return(config.list)
 }
 
 #' Get config file parameter groups
 #' 
 #'
-#' @param file Configuration file to read from (defaults to 'config.json') 
-#' 'JSON/INI/YAML format file. 
-#' @param encoding Encoding of filepath parameter, will default to system encoding if not specifield 
+#' @param file File name of configuration file to read from. Defaults to the value of
+#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' variable does not exist and JSON/INI/YAML/TOML format only)
+#' @param ... Arguments for \code{\link{read.config}} 
 #' @seealso
 #' \code{\link{eval.config.merge}} which use this get all of parameter sets groups of config file. 
-#' @return a character vector including the groups infomation of configure file 
+#' @return a character vector including the groups infomation of configure file or
+#' logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file
 #' @export
 #' @examples
 #' config.json <- system.file('extdata', 'config.json', package='configr')
 #' eval.config.groups(config.json)
-eval.config.groups <- function(file = "config.json", encoding = getOption("encoding")) {
-  config.dat <- read.config(file, encoding)
-  if (is.logical(config.dat) && config.dat == FALSE) {
+eval.config.groups <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), 
+  ...) {
+  status <- check.file.parameter(file)
+  if (status == FALSE) {
     return(FALSE)
   }
-  return(names(config.dat))
+  config.list <- read.config(file = file, ...)
+  if (is.logical(config.list) && config.list == FALSE) {
+    return(FALSE)
+  }
+  return(names(config.list))
 }

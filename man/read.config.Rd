@@ -2,21 +2,26 @@
 % Please edit documentation in R/read.R
 \name{read.config}
 \alias{read.config}
-\title{Read from the file (JSON/INI/YAML be supported), retreiving all values as a list.}
+\title{Read from the file (JSON/INI/YAML/TOML be supported), retreiving all values as a list.}
 \usage{
-read.config(file = "config.json", encoding = getOption("encoding"))
+read.config(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), ...)
 }
 \arguments{
-\item{file}{Configuration file to read from (defaults to 'config.json') 
-'JSON/INI/YAML format file.}
+\item{file}{File name of configuration file to read from. Defaults to the value of
+the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+variable does not exist and JSON/INI/YAML/TOML format only)}
 
-\item{encoding}{Encoding of filepath parameter, will default to system encoding if not specifield.}
+\item{...}{Arguments for \code{\link{get.config.type}}, 
+\code{\link[jsonlite]{fromJSON}}, \code{\link[ini]{read.ini}},
+\code{\link[yaml]{yaml.load_file}}, \code{\link[RcppTOML]{parseTOML}}, 
+\code{\link{readLines}}}
 }
 \value{
-All values as a list.
+All values as a list or 
+logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file
 }
 \description{
-Read from the file (JSON/INI/YAML be supported), retreiving all values as a list.
+Read from the file (JSON/INI/YAML/TOML be supported), retreiving all values as a list.
 }
 \examples{
 config.json <- system.file('extdata', 'config.json', package='configr')
@@ -28,5 +33,7 @@ config <- read.config(file=config.json)
 \code{\link[ini]{read.ini}} INI file will read by this
 
 \code{\link[yaml]{yaml.load_file}} YAML file will read by this
+
+\code{\link[RcppTOML]{parseTOML}} TOML file will read by this
 }
 

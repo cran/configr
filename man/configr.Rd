@@ -5,10 +5,26 @@
 \alias{configr}
 \alias{configr-package}
 \title{configr package implements the YAML parser, 
-JSON parser and INI parser for R setting and writing of configuration file.}
+JSON parser, INI parser and TOML parser for R setting and writing of configuration file.}
 \description{
 configr package implements the YAML parser, 
-JSON parser and INI parser for R setting and writing of configuration file.
+JSON parser, INI parser and TOML parser for R setting and writing of configuration file.
+}
+\examples{
+
+example.toml <- system.file('toml', 'example.toml', package='RcppTOML')
+is.toml <- is.toml.file(example.toml)
+file.type <- get.config.type(example.toml)
+toml.list.raw <- read.config(example.toml)
+owner.config <- eval.config(file = example.toml, config = 'owner')
+owner.config.name <- eval.config(value = 'name', file = example.toml, config = 'owner')
+toml.groups <- eval.config.groups(example.toml)
+toml.merged.all <- eval.config.merge(example.toml)
+toml.merged.selected <- eval.config.merge(example.toml, groups = c('database', 'owner'))
+
+others <- list(others = list(lastupdate='2017-01-07'))
+toml.list.update <- config.list.merge(toml.list.raw, others)
+
 }
 \author{
 Li Jianfeng \url{lee_jianfeng@sjtu.edu.cn}

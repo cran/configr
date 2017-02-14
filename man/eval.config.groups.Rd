@@ -4,16 +4,19 @@
 \alias{eval.config.groups}
 \title{Get config file parameter groups}
 \usage{
-eval.config.groups(file = "config.json", encoding = getOption("encoding"))
+eval.config.groups(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"),
+  ...)
 }
 \arguments{
-\item{file}{Configuration file to read from (defaults to 'config.json') 
-'JSON/INI/YAML format file.}
+\item{file}{File name of configuration file to read from. Defaults to the value of
+the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+variable does not exist and JSON/INI/YAML/TOML format only)}
 
-\item{encoding}{Encoding of filepath parameter, will default to system encoding if not specifield}
+\item{...}{Arguments for \code{\link{read.config}}}
 }
 \value{
-a character vector including the groups infomation of configure file
+a character vector including the groups infomation of configure file or
+logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file
 }
 \description{
 Get config file parameter groups

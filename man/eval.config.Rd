@@ -2,29 +2,31 @@
 % Please edit documentation in R/read.R
 \name{eval.config}
 \alias{eval.config}
-\title{Read from the currently active configuration (JSON/INI/YAML be supported), 
+\title{Read from the currently active configuration (JSON/INI/YAML/TOML be supported), 
 'retreiving either a single named value or all values as a config obj which 
 have 'config', 'configtype', 'file' 'property.}
 \usage{
 eval.config(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
-  file = "config.json", encoding = getOption("encoding"))
+  file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), ...)
 }
 \arguments{
 \item{value}{Name of value (NULL to read all values)}
 
 \item{config}{Name of configuration to read from. Defaults to the value of 
-'the R_CONFIG_NAME environment variable ('default' if the variable does not exist).}
+'the R_CONFIG_ACTIVE environment variable ('default' if the variable does not exist).}
 
-\item{file}{Configuration file to read from (defaults to 'config.json') 
-'JSON/INI/YAML format file.}
+\item{file}{File name of configuration file to read from. Defaults to the value of
+the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+variable does not exist and JSON/INI/YAML/TOML format only)}
 
-\item{encoding}{Encoding of filepath parameter, will default to system encoding if not specifield}
+\item{...}{Arguments for \code{\link{read.config}}}
 }
 \value{
-Either a single value or all values as a list.
+Either a single value or all values as a list or 
+logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file
 }
 \description{
-Read from the currently active configuration (JSON/INI/YAML be supported), 
+Read from the currently active configuration (JSON/INI/YAML/TOML be supported), 
 'retreiving either a single named value or all values as a config obj which 
 have 'config', 'configtype', 'file' 'property.
 }

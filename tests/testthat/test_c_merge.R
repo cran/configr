@@ -1,0 +1,47 @@
+config.json <- system.file('extdata', 'config.json', package='configr')
+config.yaml <- system.file('extdata', 'config.yaml', package='configr')
+config.ini <- system.file('extdata', 'config.ini', package='configr')
+config.toml <- system.file('extdata', 'config.toml', package='configr')
+config.error.toml <- system.file('extdata', 'config.error.toml', package='configr')
+
+print("Debug:config.list.merge(list(a=c(123,123),b=c(4,5,6),list(c=c(2,3,4))))")
+list.left <- list(a=c(123,123), b=c(4,5,6))
+list.right <- list(c=c(2,3,4))
+print(config.list.merge(list.left, list.right))
+
+print("Debug:eval.config.merge(file=config.json)")
+print(eval.config.merge(config.json))
+print("Debug:eval.config.merge(file=config.yaml)")
+print(eval.config.merge(config.yaml))
+print("Debug:eval.config.merge(file=config.ini)")
+print(eval.config.merge(config.ini))
+print("Debug:eval.config.merge(file=config.toml)")
+print(eval.config.merge(config.toml))
+
+print("Debug:eval.config.merge(file=config.json, 'comments')")
+print(eval.config.merge(config.json, "comments"))
+print("Debug:eval.config.merge(file=config.yaml,' comments')")
+print(eval.config.merge(config.yaml, "comments"))
+print("Debug:eval.config.merge(file=config.ini, 'comments')")
+print(eval.config.merge(config.ini, "comments"))
+print("Debug:eval.config.merge(file=config.toml, 'comments')")
+print(eval.config.merge(config.toml, "comments"))
+
+print("Debug:eval.config.merge(file=config.json, c('default', 'comments'))")
+print(eval.config.merge(config.json, c("default", "comments")))
+print("Debug:eval.config.merge(file=config.yaml, c('default', 'comments'))")
+print(eval.config.merge(config.yaml, c("default", "comments")))
+print("Debug:eval.config.merge(file=config.ini, c('default', 'comments'))")
+print(eval.config.merge(config.ini, c("default", "comments")))
+print("Debug:eval.config.merge(file=config.toml, c('default', 'comments'))")
+print(eval.config.merge(config.toml, c("default", "comments")))
+
+
+print("Debug:eval.config.merge(file='unknow', c('default', 'comments'))")
+print(suppressWarnings(eval.config.merge('unknow', c("default", "comments"))))
+
+print("Debug:eval.config.merge(file=config.toml, c('title','default', 'comments'))")
+print(eval.config.merge(file=config.toml, c('title','default', 'comments')))
+
+print("Debug:config.list.merge('','')")
+print(suppressWarnings(config.list.merge('','')))

@@ -12,7 +12,7 @@ config.list.merge(list.left = list(), list.right = list())
 \item{list.right}{One list be merged right}
 }
 \value{
-a list
+A list
 }
 \description{
 Merge list file (From config package), list.right will overwrite the element also existed in list.left
