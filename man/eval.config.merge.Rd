@@ -39,4 +39,3 @@ eval.config.merge(config.toml)
 \code{\link{read.config}} which only read from a config as a list,
 \code{\link{eval.config}} which only read one groups as config obj or a value from config file.
 }
-

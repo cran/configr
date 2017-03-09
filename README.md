@@ -32,7 +32,7 @@ Configuration files, from INI/XML/JSON/YAML to TOML, readability and maneuverabi
  	}
 }
 ```
-More infomation and example of JSON can be founded in [json.org](http://json.org/), [JSON Example](http://json.org/example.html) and [JSON-wikipedia](https://en.wikipedia.org/wiki/JSON).
+More infomation and example of JSON can be founded in [json.org](http://www.json.org/), [JSON Example](http://www.json.org/example.html) and [JSON-wikipedia](https://en.wikipedia.org/wiki/JSON).
 
 ### INI
 ``` ini
@@ -50,7 +50,7 @@ default:
 comments:
   version: 0.1.0
 ```
-More infomation and example of YAML can be founded in [yaml.org](http://yaml.org/) and [YAML-wikipedia](https://en.wikipedia.org/wiki/YAML).
+More infomation and example of YAML can be founded in [yaml.org](http://www.yaml.org/) and [YAML-wikipedia](https://en.wikipedia.org/wiki/YAML).
 
 ### TOML
 ``` toml
@@ -132,6 +132,9 @@ json.list <- read.config(file = config.json)
 ini.list <- read.config(file = config.ini)
 yaml.list <- read.config(file = config.yaml)
 toml.list <- read.config(file = config.toml) 
+toml.list.parsed.1 <- read.config(file = config.toml, extra.list = list(debug = "TRUE")) 
+other.config <- system.file('extdata', 'config.other.yaml', package='configr')
+toml.list.parsed.2 <- read.config(file = config.toml, other.config = other.config) 
 ```
 
 **eval.config**
@@ -165,6 +168,14 @@ ini.config.all <- eval.config.merge(file = config.ini)
 yaml.config.all <- eval.config.merge(file = config.yaml)
 toml.config.all <- eval.config.merge(file = config.toml)
 ```
+
+**convert.config**
+
+convert.config can covert JSON/INI/YAML/TOML format configuration file to JSON/INI/YAML format configuration file 
+``` r
+convert.config(file = config.yaml, out.file = tempfile(, fileext = ".json"), convert.to = "JSON")
+```
+
 **write.config**
 
 write.config as the only write function, JSON/INI/YAML be supported now, the TOML will be done soon. Of course, 

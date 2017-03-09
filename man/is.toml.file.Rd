@@ -38,4 +38,3 @@ print(is.toml.file(config.toml))
 \code{\link{is.ini.file}}, 
 \code{\link{is.yaml.file}}
 }
-

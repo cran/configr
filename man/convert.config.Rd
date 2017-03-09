@@ -38,4 +38,3 @@ config <- convert.config(file=config.json, out.file = sprintf('\%s/config.ini', 
 
 \code{\link[yaml]{yaml.load_file}} YAML file will read by this
 }
-

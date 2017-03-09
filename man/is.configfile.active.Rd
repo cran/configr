@@ -18,4 +18,3 @@ Check whether a configuration file is currently active
 \examples{
 is.configfile.active('config.cfg')
 }
-

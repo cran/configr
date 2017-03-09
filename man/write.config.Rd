@@ -38,4 +38,3 @@ write.config(list.test, out.yaml, write.type = 'yaml')
 \code{\link[ini]{write.ini}} write a list in a INI format file, 
 \code{\link[yaml]{as.yaml}} convert a list to YAML format
 }
-

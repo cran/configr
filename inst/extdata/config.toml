@@ -3,7 +3,8 @@
 title = "TOML Example"
 
 [default]
-debug = true
+debug = "{{debug}}"
 
 [comments]
 version = "0.1.0"
+test_parse = "{{key:test_parse}}"

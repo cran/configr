@@ -28,4 +28,3 @@ eval.config.groups(config.json)
 \seealso{
 \code{\link{eval.config.merge}} which use this get all of parameter sets groups of config file.
 }
-

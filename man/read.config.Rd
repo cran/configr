@@ -4,12 +4,18 @@
 \alias{read.config}
 \title{Read from the file (JSON/INI/YAML/TOML be supported), retreiving all values as a list.}
 \usage{
-read.config(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), ...)
+read.config(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"),
+  extra.list = list(), other.config = "", ...)
 }
 \arguments{
 \item{file}{File name of configuration file to read from. Defaults to the value of
 the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
 variable does not exist and JSON/INI/YAML/TOML format only)}
+
+\item{extra.list}{A list that can replace the configuration file "{{debug}}" by list(debug = "TRUE"), 
+and {{debug}} will be setted to "TRUE"}
+
+\item{other.config}{Path of another configuration file that can replace the configuration file "{{key:value}}"}
 
 \item{...}{Arguments for \code{\link{get.config.type}}, 
 \code{\link[jsonlite]{fromJSON}}, \code{\link[ini]{read.ini}},
@@ -26,6 +32,9 @@ Read from the file (JSON/INI/YAML/TOML be supported), retreiving all values as a
 \examples{
 config.json <- system.file('extdata', 'config.json', package='configr')
 config <- read.config(file=config.json)
+config.extra.parsed.1 <- read.config(config.json, list(debug = "TRUE"))
+other.config <- system.file('extdata', 'config.other.yaml', package='configr')
+config.extra.parsed.2 <- read.config(config.json, list(debug = "TRUE"), other.config)
 }
 \seealso{
 \code{\link[jsonlite]{fromJSON}} JSON file will read by this
@@ -36,4 +45,3 @@ config <- read.config(file=config.json)
 
 \code{\link[RcppTOML]{parseTOML}} TOML file will read by this
 }
-

@@ -3,6 +3,9 @@
 #' @param file File name of configuration file to read from. Defaults to the value of
 #' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
 #' variable does not exist and JSON/INI/YAML/TOML format only)
+#' @param extra.list A list that can replace the configuration file "{{debug}}" by list(debug = "TRUE"), 
+#' and {{debug}} will be setted to "TRUE"
+#' @param other.config Path of another configuration file that can replace the configuration file "{{key:value}}" 
 #' @param ... Arguments for \code{\link{get.config.type}}, 
 #' \code{\link[jsonlite]{fromJSON}}, \code{\link[ini]{read.ini}},
 #' \code{\link[yaml]{yaml.load_file}}, \code{\link[RcppTOML]{parseTOML}}, 
@@ -21,7 +24,10 @@
 #' @examples
 #' config.json <- system.file('extdata', 'config.json', package='configr')
 #' config <- read.config(file=config.json)
-read.config <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), ...) {
+#' config.extra.parsed.1 <- read.config(config.json, list(debug = "TRUE"))
+#' other.config <- system.file('extdata', 'config.other.yaml', package='configr')
+#' config.extra.parsed.2 <- read.config(config.json, list(debug = "TRUE"), other.config)
+read.config <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), extra.list = list(), other.config = "", ...) {
   status <- check.file.parameter(file)
   if (status == FALSE) {
     return(FALSE)
@@ -30,7 +36,7 @@ read.config <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), 
   if (!is.character(file.type)) {
     return(FALSE)
   }
-  config.list <- get.config.list(file = file, file.type = file.type, ...)
+  config.list <- get.config.list(file = file, file.type = file.type, extra.list = extra.list, other.config = other.config, ...)
   return(config.list)
 }
 
@@ -54,6 +60,10 @@ read.config <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), 
 #' @examples
 #' config.json <- system.file('extdata', 'config.json', package='configr')
 #' config <- eval.config(file=config.json)
+#' config.extra.parsed.1 <- eval.config(file = config.json, extra.list = list(debug = "TRUE"))
+#' other.config <- system.file('extdata', 'config.other.yaml', package='configr')
+#' config.extra.parsed.2 <- eval.config(file = config.json, extra.list = list(debug = "TRUE"), 
+#' other.config = other.config)
 #' @export
 eval.config <- function(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "default"), 
   file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), ...) {

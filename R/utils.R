@@ -29,7 +29,7 @@ config.funs.par <- function(fun = "", ...) {
 
 # Function get config.list
 get.config.list <- function(file, file.type = "json", json.file.debug = FALSE, ini.file.debug = FALSE, 
-  yaml.file.debug = FALSE, toml.file.debug = FALSE, ...) {
+  yaml.file.debug = FALSE, toml.file.debug = FALSE, extra.list = list(), other.config = "", ...) {
   if (file.type == "json") {
     readLines.par <- config.funs.par("readLines", ...)
     readLines.par <- config.list.merge(readLines.par, list(con = file))
@@ -115,6 +115,7 @@ get.config.list <- function(file, file.type = "json", json.file.debug = FALSE, i
   if (is.null(result)) {
     return(FALSE)
   } else {
+    config.list <- parse.extra(config.list, extra.list, other.config)
     return(config.list)
   }
 }
@@ -145,10 +146,7 @@ write.config.list <- function(config.dat, file.path, write.type = "json", ...) {
 
 # Function to check file parameter
 check.file.parameter <- function(file) {
-  if (!is.character(file)) {
-    warning("Parameter Error: file must be a character.")
-    return(FALSE)
-  } else if (!file.exists(file)) {
+  if (!file.exists(file)) {
     warning(sprintf("'%s' No such of file.", file))
     return(FALSE)
   }
@@ -176,3 +174,4 @@ list.merge <- function(base.list, overlay.list, recursive = TRUE) {
     merged_list
   }
 }
+

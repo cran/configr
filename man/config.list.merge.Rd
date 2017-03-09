@@ -29,4 +29,3 @@ config.list.merge(list.left, list.right)
 \seealso{
 \code{\link[config]{merge}} call in this function
 }
-

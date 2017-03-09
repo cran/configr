@@ -33,10 +33,13 @@ have 'config', 'configtype', 'file' 'property.
 \examples{
 config.json <- system.file('extdata', 'config.json', package='configr')
 config <- eval.config(file=config.json)
+config.extra.parsed.1 <- eval.config(file = config.json, extra.list = list(debug = "TRUE"))
+other.config <- system.file('extdata', 'config.other.yaml', package='configr')
+config.extra.parsed.2 <- eval.config(file = config.json, extra.list = list(debug = "TRUE"), 
+other.config = other.config)
 }
 \seealso{
 \code{\link{read.config}} read config by this 
 
 \code{\link{eval.config.merge}} which can merge multiple parameter sets by groups
 }
-

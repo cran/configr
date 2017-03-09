@@ -1,0 +1,13 @@
+config.json <- system.file('extdata', 'config.json', package='configr')
+cat("###########################################################", sep = "\n")
+cat("#################  [Debug] parse module  ######################", sep = "\n")
+cat("###########################################################", sep = "\n")
+config <- read.config(config.json)
+cat("[Debug]: parse.extra(config, list(debug = 'TRUE'))", sep = "\n")
+print(parse.extra(config, list(debug = "TRUE")))
+cat("[Debug]: parse.extra(config, list(debug = 'TRUE'), other.config)", sep = "\n")
+other.config <- system.file('extdata', 'config.other.yaml', package='configr')
+print(parse.extra(config, list(debug = "TRUE"), other.config))
+
+cat("###########  END parse module [Debug] end line END ###################", sep = "\n")
+cat("\n\n")

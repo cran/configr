@@ -1,3 +1,14 @@
+2017-03-09 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* 0.2.0 release
+		* Add parse.extra example in read.config and eval.config
+
+2017-03-07 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+		
+		* Add parse.extra function in R/parse.R
+		* Import stringr
+		* Change tests output format
+
 2017-02-14 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* Use RcppTOML 0.1.1

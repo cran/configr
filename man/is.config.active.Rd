@@ -18,4 +18,3 @@ Check whether a configuration group is currently active
 \examples{
 is.config.active('default')
 }
-

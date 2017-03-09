@@ -26,9 +26,6 @@ others <- list(others = list(lastupdate='2017-01-07'))
 toml.list.update <- config.list.merge(toml.list.raw, others)
 
 }
-\author{
-Li Jianfeng \url{lee_jianfeng@sjtu.edu.cn}
-}
 \seealso{
 Useful links:
 
@@ -36,4 +33,6 @@ Useful links:
 
 Report bugs at \url{https://github.com/Miachol/configr/issues}
 }
-
+\author{
+Li Jianfeng \url{lee_jianfeng@sjtu.edu.cn}
+}
