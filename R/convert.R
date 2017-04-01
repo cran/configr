@@ -1,10 +1,10 @@
 #' Covert configuration file from JSON/INI/YAML/TOML to JSON/INI/YAML
 #'
 #' @param file File name of configuration file to read from. Defaults to the value of
-#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 #' variable does not exist and JSON/INI/YAML/TOML format only)
 #' @param out.file Output path of configuration file. Defaults to the value of
-#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 #' variable does not exist) 
 #' @param convert.to JSON/INI/YAML
 #' @param ... Arguments for \code{\link{read.config}} and \code{\link{write.config}}

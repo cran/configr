@@ -1,3 +1,15 @@
+2017-03-23 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* %'% in configuration when rcmd.parse=TRUE, can be parsed to double
+		quote that can to avoid double quote escape which can raise error
+
+2017-03-17 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+		
+		* 0.2.1 release
+		* '@>@ R statement @<@' in config can be paresed in parse.extra(rcmd.parse =
+		TRUE)
+		* Fix mulitple var parse in parse.R parse.config
+
 2017-03-09 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* 0.2.0 release

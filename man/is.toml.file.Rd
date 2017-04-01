@@ -9,7 +9,7 @@ is.toml.file(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"),
 }
 \arguments{
 \item{file}{File name of configuration file to test. Defaults to the value of
-the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 variable does not exist and JSON/INI/YAML/TOML format only)}
 
 \item{toml.file.debug}{If TRUE, it will show error infomation when read TOML config,

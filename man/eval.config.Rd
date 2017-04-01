@@ -16,7 +16,7 @@ eval.config(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
 'the R_CONFIG_ACTIVE environment variable ('default' if the variable does not exist).}
 
 \item{file}{File name of configuration file to read from. Defaults to the value of
-the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 variable does not exist and JSON/INI/YAML/TOML format only)}
 
 \item{...}{Arguments for \code{\link{read.config}}}
@@ -33,9 +33,9 @@ have 'config', 'configtype', 'file' 'property.
 \examples{
 config.json <- system.file('extdata', 'config.json', package='configr')
 config <- eval.config(file=config.json)
-config.extra.parsed.1 <- eval.config(file = config.json, extra.list = list(debug = "TRUE"))
+config.extra.parsed.1 <- eval.config(file = config.json, extra.list = list(debug = 'TRUE'))
 other.config <- system.file('extdata', 'config.other.yaml', package='configr')
-config.extra.parsed.2 <- eval.config(file = config.json, extra.list = list(debug = "TRUE"), 
+config.extra.parsed.2 <- eval.config(file = config.json, extra.list = list(debug = 'TRUE'), 
 other.config = other.config)
 }
 \seealso{

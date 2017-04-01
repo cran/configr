@@ -29,7 +29,8 @@ config.funs.par <- function(fun = "", ...) {
 
 # Function get config.list
 get.config.list <- function(file, file.type = "json", json.file.debug = FALSE, ini.file.debug = FALSE, 
-  yaml.file.debug = FALSE, toml.file.debug = FALSE, extra.list = list(), other.config = "", ...) {
+  yaml.file.debug = FALSE, toml.file.debug = FALSE, extra.list = list(), other.config = "", 
+  rcmd.parse = FALSE, ...) {
   if (file.type == "json") {
     readLines.par <- config.funs.par("readLines", ...)
     readLines.par <- config.list.merge(readLines.par, list(con = file))
@@ -115,7 +116,7 @@ get.config.list <- function(file, file.type = "json", json.file.debug = FALSE, i
   if (is.null(result)) {
     return(FALSE)
   } else {
-    config.list <- parse.extra(config.list, extra.list, other.config)
+    config.list <- parse.extra(config.list, extra.list, other.config, rcmd.parse)
     return(config.list)
   }
 }

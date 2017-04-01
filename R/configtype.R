@@ -1,7 +1,7 @@
 #' Function to check wheather file is JSON format 
 #'
 #' @param file File name of configuration file to test. Defaults to the value of
-#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 #' variable does not exist and JSON/INI/YAML/TOML format only)
 #' @param json.file.debug If TRUE, it will show error infomation when read JSON config,
 #' default is FALSE
@@ -40,7 +40,7 @@ is.json.file <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"),
 #' Function to check wheather file is INI format 
 #'
 #' @param file File name of configuration file to test. Defaults to the value of
-#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 #' variable does not exist and JSON/INI/YAML/TOML format only) 
 #' @param ini.file.debug If TRUE, it will show error infomation when read INI config,
 #' default is FALSE
@@ -79,7 +79,7 @@ is.ini.file <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), 
 #' Function to check wheather file is YAML format 
 #'
 #' @param file File name of configuration file to test. Defaults to the value of
-#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 #' variable does not exist and JSON/INI/YAML/TOML format only) 
 #' @param yaml.file.debug If TRUE, it will show error infomation when read YAML config,
 #' default is FALSE
@@ -119,7 +119,7 @@ is.yaml.file <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"),
 #' Function to check wheather file is TOML format 
 #'
 #' @param file File name of configuration file to test. Defaults to the value of
-#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 #' variable does not exist and JSON/INI/YAML/TOML format only) 
 #' @param toml.file.debug If TRUE, it will show error infomation when read TOML config,
 #' default is FALSE
@@ -158,7 +158,7 @@ is.toml.file <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"),
 #' Get config file type retreiving json/ini/yaml or FALSE
 #'
 #' @param file File name of configuration file to test. Defaults to the value of
-#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 #' variable does not exist and JSON/INI/YAML/TOML format only) 
 #' @param ... Arguments for \code{\link{is.json.file}}, 
 #' \code{\link{is.ini.file}}, \code{\link{is.yaml.file}}, 

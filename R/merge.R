@@ -1,7 +1,7 @@
 #' Merge config parameter sets by groups.
 #'
 #' @param file File name of configuration file to read from. Defaults to the value of
-#' the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+#' the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 #' variable does not exist and JSON/INI/YAML/TOML format only)
 #' @param ... Arguments for \code{\link{get.config.type}}, 
 #' \code{\link{eval.config.groups}}, \code{\link{eval.config}}

@@ -9,7 +9,7 @@ eval.config.groups(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"),
 }
 \arguments{
 \item{file}{File name of configuration file to read from. Defaults to the value of
-the ‘R_CONFIGFILE_ACTIVE’ environment variable ('config.cfg' if the
+the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 variable does not exist and JSON/INI/YAML/TOML format only)}
 
 \item{...}{Arguments for \code{\link{read.config}}}
