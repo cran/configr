@@ -2,27 +2,27 @@
 % Please edit documentation in R/merge.R
 \name{eval.config.merge}
 \alias{eval.config.merge}
-\title{Merge config parameter sets by groups.}
+\title{Merge config parameter sets by sections.}
 \usage{
 eval.config.merge(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"),
-  groups = NULL, ...)
+  sections = NULL, ...)
 }
 \arguments{
 \item{file}{File name of configuration file to read from. Defaults to the value of
 the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 variable does not exist and JSON/INI/YAML/TOML format only)}
 
-\item{groups}{Need be merged parameter sets, eg. groups=c('default', 'version'), will 
-default to all of config groups}
+\item{sections}{Need be merged parameter sets, eg. sections=c('default', 'version'), will 
+default to all of config sections}
 
 \item{...}{Arguments for \code{\link{get.config.type}}, 
-\code{\link{eval.config.groups}}, \code{\link{eval.config}}}
+\code{\link{eval.config.sections}}, \code{\link{eval.config}}}
 }
 \value{
 A list or logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file
 }
 \description{
-Merge config parameter sets by groups.
+Merge config parameter sets by sections.
 }
 \examples{
 config.json <- system.file('extdata', 'config.json', package='configr')
@@ -35,7 +35,7 @@ eval.config.merge(config.yaml)
 eval.config.merge(config.toml)
 }
 \seealso{
-\code{\link{eval.config.groups}} which only get all of the mainly parameter sets name in config file, 
+\code{\link{eval.config.sections}} which only get all of the mainly parameter sets name in config file, 
 \code{\link{read.config}} which only read from a config as a list,
-\code{\link{eval.config}} which only read one groups as config obj or a value from config file.
+\code{\link{eval.config}} which only read one sections as config obj or a value from config file.
 }

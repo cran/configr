@@ -163,20 +163,20 @@ config.yaml.obj <- eval.config(file = config.yaml)
 config.toml.obj <- eval.config(file = config.toml)
 ```
 
-**eval.config.groups**
+**eval.config.sections**
 
-eval.config.groups can get all top groups in configuration file. 
+eval.config.sections can get all top sections in configuration file. 
 ``` r
-json.groups <- eval.config.groups(file = config.json)
-ini.groups <- eval.config.groups(file = config.ini)
-yaml.groups <- eval.config.groups(file = config.yaml)
-toml.groups <- eval.config.groups(file = config.toml)
+json.sections <- eval.config.sections(file = config.json)
+ini.sections <- eval.config.sections(file = config.ini)
+yaml.sections <- eval.config.sections(file = config.yaml)
+toml.sections <- eval.config.sections(file = config.toml)
 ```
 
 **eval.config.merge**
 
-eval.config.merge can read mulitple selected config groups as a list
-(Default to read all groups, you can set parameter 'groups' to read whatever you want groups).
+eval.config.merge can read mulitple selected config sections as a list
+(Default to read all sections, you can set parameter 'sections' to read whatever you want sections).
 ``` r
 json.config.all <- eval.config.merge(file = config.json)
 ini.config.all <- eval.config.merge(file = config.ini)

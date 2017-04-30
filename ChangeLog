@@ -1,3 +1,13 @@
+2017-04-30 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* {{key@}} can be recognition
+		* Rename eval.config.groups to eval.config.sections
+		* eval.config.merge parameter groups change to sections
+
+2017-04-10 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* Add EOF flag when write a JSON format configuration file
+
 2017-03-23 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* %'% in configuration when rcmd.parse=TRUE, can be parsed to double

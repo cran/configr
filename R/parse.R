@@ -44,7 +44,7 @@ parse.extra.list <- function(config, extra.list) {
         if (!item %in% names(args.all)) {
           next
         }
-        item.value <- eval(parse(text = sprintf("args.all$%s", item)))
+        item.value <- eval(parse(text = sprintf("args.all$`%s`", item)))
         config[[list.item]] <- str_replace_all(config[[list.item]], sprintf("\\{\\{%s\\}\\}", 
           item), item.value)
       }
@@ -169,7 +169,7 @@ parse.extra.rcmd.nonlist <- function(config, list.item, text.nonlist) {
 
 str.extract.var <- function(text) {
   text <- str_extract_all(text, "\\{\\{.*\\}\\}")
-  text <- str_extract_all(text, "\\{\\{[a-zA-Z0-9_.:]*\\}\\}")
+  text <- str_extract_all(text, "\\{\\{[@a-zA-Z0-9_.:]*\\}\\}")
   text <- lapply(text, function(x) str_replace_all(x, "\"", ""))
   text <- lapply(text, function(x) str_replace_all(x, fixed("{{"), ""))
   text <- lapply(text, function(x) str_split(x, fixed("}}")))

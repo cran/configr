@@ -41,5 +41,5 @@ other.config = other.config)
 \seealso{
 \code{\link{read.config}} read config by this 
 
-\code{\link{eval.config.merge}} which can merge multiple parameter sets by groups
+\code{\link{eval.config.merge}} which can merge multiple parameter sets by sections
 }

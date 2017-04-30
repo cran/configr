@@ -128,6 +128,7 @@ write.config.list <- function(config.dat, file.path, write.type = "json", ...) {
     toJSON.par <- config.funs.par("jsonlite::toJSON", ...)
     toJSON.par <- config.list.merge(toJSON.par, list(x = config.dat, pretty = TRUE))
     json.string <- do.call(jsonlite::toJSON, toJSON.par)
+    json.string <- paste0(json.string, "\n")
     cat.par <- config.funs.par("cat", ...)
     cat.par <- config.list.merge(list(json.string, file = file.path), cat.par)
     do.call(cat, cat.par)

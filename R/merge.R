@@ -1,16 +1,16 @@
-#' Merge config parameter sets by groups.
+#' Merge config parameter sets by sections.
 #'
 #' @param file File name of configuration file to read from. Defaults to the value of
 #' the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
 #' variable does not exist and JSON/INI/YAML/TOML format only)
 #' @param ... Arguments for \code{\link{get.config.type}}, 
-#' \code{\link{eval.config.groups}}, \code{\link{eval.config}}
-#' @param groups Need be merged parameter sets, eg. groups=c('default', 'version'), will 
-#' default to all of config groups
+#' \code{\link{eval.config.sections}}, \code{\link{eval.config}}
+#' @param sections Need be merged parameter sets, eg. sections=c('default', 'version'), will 
+#' default to all of config sections
 #' @seealso
-#' \code{\link{eval.config.groups}} which only get all of the mainly parameter sets name in config file, 
+#' \code{\link{eval.config.sections}} which only get all of the mainly parameter sets name in config file, 
 #' \code{\link{read.config}} which only read from a config as a list,
-#' \code{\link{eval.config}} which only read one groups as config obj or a value from config file.
+#' \code{\link{eval.config}} which only read one sections as config obj or a value from config file.
 #' @return A list or logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file
 #' @export
 #' @examples
@@ -23,15 +23,15 @@
 #' eval.config.merge(config.yaml)
 #' eval.config.merge(config.toml)
 eval.config.merge <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), 
-  groups = NULL, ...) {
+  sections = NULL, ...) {
   config.dat <- list()
-  groups.all <- eval.config.groups(file = file, ...)
+  sections.all <- eval.config.sections(file = file, ...)
   config.type <- get.config.type(file = file, ...)
-  if (is.logical(groups.all) && groups.all == FALSE) {
+  if (is.logical(sections.all) && sections.all == FALSE) {
     return(FALSE)
   }
-  if (is.null(groups)) {
-    for (i in groups.all) {
+  if (is.null(sections)) {
+    for (i in sections.all) {
       config.tmp <- eval.config(file = file, config = i, ...)
       if (!is.list(config.tmp)) {
         config.tmp <- as.list(config.tmp)
@@ -39,17 +39,17 @@ eval.config.merge <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.c
       }
       config.dat <- config.list.merge(list.left = config.dat, list.right = config.tmp)
     }
-    attr(config.dat, "config") <- groups.all
+    attr(config.dat, "config") <- sections.all
   } else {
-    groups <- groups[groups %in% groups.all]
-    for (i in groups) {
+    sections <- sections[sections %in% sections.all]
+    for (i in sections) {
       config.tmp <- eval.config(file = file, config = i, ...)
       if (!is.list(config.tmp)) {
         config.tmp <- as.list(config.tmp)
         names(config.tmp) <- i
       }
       config.dat <- config.list.merge(list.left = config.dat, list.right = config.tmp)
-      attr(config.dat, "config") <- groups
+      attr(config.dat, "config") <- sections
     }
   }
   attr(config.dat, "configtype") <- config.type

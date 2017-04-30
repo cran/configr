@@ -57,7 +57,7 @@ read.config <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), 
 #' @seealso
 #' \code{\link{read.config}} read config by this 
 #'
-#' \code{\link{eval.config.merge}} which can merge multiple parameter sets by groups
+#' \code{\link{eval.config.merge}} which can merge multiple parameter sets by sections
 #' @return Either a single value or all values as a list or 
 #' logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file
 #' @examples
@@ -83,7 +83,7 @@ eval.config <- function(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "de
   return(config.list)
 }
 
-#' Get config file parameter groups
+#' Get config file parameter groups (Will be replaced by eval.config.sections)
 #' 
 #'
 #' @param file File name of configuration file to read from. Defaults to the value of
@@ -99,6 +99,33 @@ eval.config <- function(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "de
 #' config.json <- system.file('extdata', 'config.json', package='configr')
 #' eval.config.groups(config.json)
 eval.config.groups <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), 
+  ...) {
+  status <- check.file.parameter(file)
+  if (status == FALSE) {
+    return(FALSE)
+  }
+  config.list <- read.config(file = file, ...)
+  if (is.logical(config.list) && config.list == FALSE) {
+    return(FALSE)
+  }
+  return(names(config.list))
+}
+
+#' Get config file parameter sections
+#'
+#' @param file File name of configuration file to read from. Defaults to the value of
+#' the 'R_CONFIGFILE_ACTIVE' environment variable ('config.cfg' if the
+#' variable does not exist and JSON/INI/YAML/TOML format only)
+#' @param ... Arguments for \code{\link{read.config}} 
+#' @seealso
+#' \code{\link{eval.config.merge}} which use this get all of sections of config file. 
+#' @return a character vector including the sections infomation of configure file or
+#' logical FALSE indicating that is not standard JSON/INI/YAML/TOML format file
+#' @export
+#' @examples
+#' config.json <- system.file('extdata', 'config.json', package='configr')
+#' eval.config.sections(config.json)
+eval.config.sections <- function(file = Sys.getenv("R_CONFIGFILE_ACTIVE", "config.cfg"), 
   ...) {
   status <- check.file.parameter(file)
   if (status == FALSE) {
