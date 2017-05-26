@@ -1,4 +1,4 @@
-# [![Build Status](https://travis-ci.org/Miachol/configr.svg)](https://travis-ci.org/Miachol/configr) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://en.wikipedia.org/wiki/MIT_License) [![CRAN](http://www.r-pkg.org/badges/version/configr)](https://cran.r-project.org/package=configr) [![Downloads](http://cranlogs.r-pkg.org/badges/configr?color=brightgreen)](http://www.r-pkg.org/pkg/configr) [![codecov](https://codecov.io/github/Miachol/configr/branch/master/graphs/badge.svg)](https://codecov.io/github/Miachol/configr) 
+# [![Build Status](https://travis-ci.org/Miachol/configr.svg)](https://travis-ci.org/Miachol/configr) [![CRAN](http://www.r-pkg.org/badges/version/configr)](https://cran.r-project.org/package=configr) [![Downloads](http://cranlogs.r-pkg.org/badges/configr?color=brightgreen)](http://www.r-pkg.org/pkg/configr) [![codecov](https://codecov.io/github/Miachol/configr/branch/master/graphs/badge.svg)](https://codecov.io/github/Miachol/configr) 
 
 configr package
 ==============
@@ -24,19 +24,36 @@ Configuration files, from INI/XML/JSON/YAML to TOML, readability and maneuverabi
 
 ### JSON
 ``` json
-{   "default":{
-        "debug":"{{debug}} {{debug2}}"
-    },
-    "comments":{
-        "version":"0.2.0",
-        "test_parse":"{{key:test_parse}} {{key:test_parse2}}",
-        "test_parse2":"@>@ str_replace('{{key:test_parse}}', '2', '00')@<@ {{key:test_parse2}} {{debug2}}",
-        "test_parse3":"{{key:test_parse}}",
-        "test_parse4":"@>@ str_replace('{{key:test_parse2}}', '2', '00')@<@ @>@ str_replace('{{key:test_parse}}', '2', '00')@<@ {{key:test_parse2}} {{debug2}}"
-    }
+{
+  "default": {
+    "debug": "{{debug}} {{debug2}}"
+  },
+  "comments": {
+    "version": "0.2.3"
+  },
+  "extra_list_parse": {
+    "raw": "{{yes}}",
+    "parsed": "1"
+  },
+  "other_config_parse": {
+    "raw": "{{key:yes_flag}} {{key:no_flag}}",
+    "parsed": "yes no"
+  },
+  "rcmd_parse": {
+    "raw": "@>@ Sys.Date() @<@"
+  },
+  "bash_parse": {
+    "raw": "#>#echo bash#<#",
+    "parsed": "bash"
+  },
+  "mulitple_parse": {
+    "raw":"@>@str_replace('config','g$','gr')@<@, #>#echo configr#<#, {{key:yes_flag}}, {{yes}}, @>@str_replace('configr','r','')@<@, #># echo config#<#, {{key:no_flag}}, {{no}}",
+    "parsed":"configr, configr, yes, 1, config, config, no, 0"
+  }
 }
+
 ```
-More infomation and example of JSON can be founded in [json.org](http://www.json.org/), [JSON Example](http://www.json.org/example.html) and [JSON-wikipedia](https://en.wikipedia.org/wiki/JSON). `{{key:key:value}}/{{key}}` can be parsed by parse.extra using `extra.list` and `other.config` parameters. `@>@ str_replace("123", "2", "1")@<@` can be parsed by `parse.extra` setting parameter `rcmd.parse` to `TRUE`. Example of that can be founded in this document tail.
+More infomation and example of JSON can be founded in [json.org](http://www.json.org/), [JSON Example](http://www.json.org/example.html) and [JSON-wikipedia](https://en.wikipedia.org/wiki/JSON). `{{key:key:value}}/{{key}}` can be parsed by parse.extra using `extra.list` and `other.config` parameters. `@>@ str_replace("config", "g$", "gr")@<@` can be parsed by `parse.extra` setting parameter `rcmd.parse` to `TRUE`. Example of that can be founded in this document tail.
 
 ### INI
 ``` ini
@@ -44,11 +61,26 @@ More infomation and example of JSON can be founded in [json.org](http://www.json
 debug = {{debug}} {{debug2}}
 
 [comments]
-version = 0.2.0
-test_parse = {{key:test_parse}} {{key:test_parse2}}
-test_parse2 = @>@ str_replace('{{key:test_parse}}', '2', '00')@<@ {{key:test_parse2}} {{debug2}}
-test_parse3 = {{key:test_parse}}
-test_parse4 = @>@ str_replace('{{key:test_parse2}}', '2', '00')@<@ @>@ str_replace('{{key:test_parse}}', '2', '00')@<@ {{key:test_parse2}} {{debug2}}
+version = 0.2.3
+
+[extra_list_parse]
+raw = {{yes}}
+parsed = 1
+
+[other_config_parse]
+raw = {{key:yes_flag}} {{key:no_flag}}
+parsed = yes no
+
+[rcmd_parse]
+raw = @>@ Sys.Date() @<@
+
+[bash_parse]
+raw = #>#echo bash#<#
+parsed = bash
+
+[mulitple_parse]
+raw = @>@str_replace('config','g$','gr')@<@, #>#echo configr#<#, {{key:yes_flag}}, {{yes}}, @>@str_replace('configr','r','')@<@, #>#echo config#<#, {{key:no_flag}}, {{no}}
+parsed = configr, configr, yes, 1, config, config, no, 0
 ```
 More infomation and example of INI can be founded in [INI-wikipedia](https://en.wikipedia.org/wiki/INI_file).
 
@@ -57,25 +89,51 @@ More infomation and example of INI can be founded in [INI-wikipedia](https://en.
 default:
   debug: '{{debug}} {{debug2}}'
 comments:
-  version: 0.2.0
-  test_parse: '{{key:test_parse}} {{key:test_parse2}}'
-  test_parse2: '@>@ str_replace(''{{key:test_parse}}'', ''2'', ''00'')@<@ {{key:test_parse2}}
-    {{debug2}}'
-  test_parse3: '{{key:test_parse}}'
-  test_parse4: '@>@ str_replace(''{{key:test_parse2}}'', ''2'', ''00'')@<@ @>@ str_replace(''{{key:test_parse}}'',
-    ''2'', ''00'')@<@ {{key:test_parse2}} {{debug2}}'
+  version: 0.2.3
+extra_list_parse:
+  raw: '{{yes}}'
+  parsed: '1'
+other_config_parse:
+  raw: '{{key:yes_flag}} {{key:no_flag}}'
+  parsed: yes no
+rcmd_parse:
+  raw: '@>@ Sys.Date() @<@'
+bash_parse:
+  raw: "#>#echo bash#<#"
+  parsed: bash
+mulitple_parse:
+  raw: "@>@str_replace('config','g$','gr')@<@, #>#echo configr#<#, {{key:yes_flag}}, {{yes}}, @>@str_replace('configr','r','')@<@, #>#echo config#<#, {{key:no_flag}}, {{no}}"
+  parsed: configr, configr, yes, 1, config, config, no, 0
 ```
 More infomation and example of YAML can be founded in [yaml.org](http://www.yaml.org/) and [YAML-wikipedia](https://en.wikipedia.org/wiki/YAML).
 
 ### TOML
 ``` toml
+# This is a TOML document. Jianfeng.
+
 title = "TOML Example"
 
 [default]
-debug = true
+debug = "{{debug}} {{debug2}}"
 
 [comments]
-version = "0.1.0"
+version = "0.2.3"
+
+[extra_list_parse]
+raw = "{{yes}}"
+parsed = "1"
+
+[other_config_parse]
+raw = "{{key:yes_flag}} {{key:no_flag}}"
+parsed = "yes no"
+
+[bash_parse]
+raw = "#>#echo bash#<#"
+parsed = "bash"
+
+[mulitple_parse]
+raw = "@>@str_replace('config','g$','gr')@<@, #>#echo configr#<#, {{key:yes_flag}}, {{yes}}, @>@str_replace('configr','r','')@<@, #>#echo config#<#, {{key:no_flag}}, {{no}}"
+parsed = "configr, configr, yes, 1, config, config, no, 0"
 ```
 More infomation and example of TOML can be founded in and [toml-lang/toml](https://github.com/toml-lang/toml) and [TOML-wikipedia](https://en.wikipedia.org/wiki/TOML).
 
@@ -222,5 +280,5 @@ config.3 <- read.config(file = config.json, extra.list = list(debug = "self", de
 # The followed two line command will return the same value
 config.4 <- read.config(file = config.json, extra.list = list(debug = "self", debug2 = "self2"), other.config = other.config, rcmd.parse = T)
 config.5 <- parse.extra(config.1, extra.list = list(debug = "self", debug2 = "self2"), other.config = other.config, rcmd.parse = T)
-
+config.6 <- parse.extra(config.1, extra.list = list(debug = "self", debug2 = "self2", yes = "1", no = "0"), other.config = other.config, rcmd.parse = T, bash.parse = T)
 ```

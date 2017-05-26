@@ -5,7 +5,7 @@ get.config.value <- function(file = "", value = NULL, config = "", config.list =
     config.list <- config.list[[config]]
     attr(config.list, "config") <- config
     attr(config.list, "configtype") <- get.config.type(file, ...)
-    attr(config.list, "file") <- normalizePath(file, mustWork = FALSE)
+    attr(config.list, "file") <- normalizePath(file, "/", mustWork = FALSE)
   } else {
     config.list <- config.list[[config]][[value]]
   }
@@ -177,3 +177,13 @@ list.merge <- function(base.list, overlay.list, recursive = TRUE) {
   }
 }
 
+str.extract.var <- function(text) {
+  text <- str_extract_all(text, "\\{\\{.*\\}\\}")
+  text <- str_extract_all(text, "\\{\\{[@a-zA-Z0-9_.:]*\\}\\}")
+  text <- lapply(text, function(x) str_replace_all(x, "\"", ""))
+  text <- lapply(text, function(x) str_replace_all(x, fixed("{{"), ""))
+  text <- lapply(text, function(x) str_split(x, fixed("}}")))
+  text <- unlist(text)
+  text <- text[text != ""]
+  text <- unique(text)
+}
