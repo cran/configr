@@ -58,6 +58,10 @@ get.config.type(out.fn)
 write.config(config.dat = list.test, file.path = out.fn, write.type = "yaml", indent = 4)
 get.config.type(out.fn)
 
+# Generate a YAML format configuration file with defined indent and pointed sections
+#write.config(config.dat = list.test, file.path = out.fn, write.type = "yaml", sections = "a", indent = 4)
+#get.config.type(out.fn)
+
 ## ---- echo = TRUE--------------------------------------------------------
 other.config <- system.file('extdata', 'config.other.yaml', package='configr')
 
@@ -94,4 +98,11 @@ expect.parsed.1 <- c("a", "1", "2", "3", "4", "5", "c")
 expect.parsed.2 <- list(glue = expect.parsed.1, nochange = 1:10)
 parse.extra(list.raw, glue.parse = TRUE, glue.flag = "!!glue")
 
+
+## ---- echo = TRUE--------------------------------------------------------
+config <- read.config(file = config.json, extra.list = list(debug = "self", debug2 = "self2"), 
+  other.config = other.config)[sections]
+names(config)
+config <- config.sections.del(config, 'default')
+names(config)
 

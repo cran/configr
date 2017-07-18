@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jianfeng Li" />
 
-<meta name="date" content="2017-06-22" />
+<meta name="date" content="2017-07-18" />
 
 <title>Usage of configr</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">Usage of configr</h1>
 <h4 class="author"><em>Jianfeng Li</em></h4>
-<h4 class="date"><em>2017-06-22</em></h4>
+<h4 class="date"><em>2017-07-18</em></h4>
 
 
 
@@ -157,7 +157,7 @@ config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<s
 <span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
 <span class="co">#&gt; [1] &quot;yaml&quot;</span>
 <span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/RtmpLtnjZx/Rinst1311ce1cf4fc/configr/extdata/config.yaml&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp2yKLg6/Rinst1762b6d95d8ff/configr/extdata/config.yaml&quot;</span>
 
 <span class="co"># Read designated section</span>
 <span class="kw">eval.config</span>(<span class="dt">file =</span> config.json, <span class="dt">config =</span> <span class="st">&quot;comments&quot;</span>)
@@ -169,7 +169,7 @@ config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<s
 <span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
 <span class="co">#&gt; [1] &quot;json&quot;</span>
 <span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/RtmpLtnjZx/Rinst1311ce1cf4fc/configr/extdata/config.json&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp2yKLg6/Rinst1762b6d95d8ff/configr/extdata/config.json&quot;</span>
 
 <span class="co"># Read designated section with its one value</span>
 <span class="kw">eval.config</span>(<span class="dt">file =</span> config.ini, <span class="dt">config =</span> <span class="st">&quot;comments&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;version&quot;</span>)
@@ -187,7 +187,7 @@ config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<s
 <span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
 <span class="co">#&gt; [1] &quot;json&quot;</span>
 <span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/RtmpLtnjZx/Rinst1311ce1cf4fc/configr/extdata/config.json&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp2yKLg6/Rinst1762b6d95d8ff/configr/extdata/config.json&quot;</span>
 <span class="kw">eval.config.merge</span>(<span class="dt">file =</span> config.toml, <span class="dt">sections =</span> <span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'comments'</span>))
 <span class="co">#&gt; $debug</span>
 <span class="co">#&gt; [1] &quot;{{debug}} {{debug2}}&quot;</span>
@@ -200,7 +200,7 @@ config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<s
 <span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
 <span class="co">#&gt; [1] &quot;toml&quot;</span>
 <span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/RtmpLtnjZx/Rinst1311ce1cf4fc/configr/extdata/config.toml&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp2yKLg6/Rinst1762b6d95d8ff/configr/extdata/config.toml&quot;</span></code></pre></div>
 </div>
 <div id="converting-and-writing-configuration-file" class="section level2">
 <h2>Converting and writing configuration file</h2>
@@ -224,7 +224,11 @@ out.fn &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class
 <span class="kw">write.config</span>(<span class="dt">config.dat =</span> list.test, <span class="dt">file.path =</span> out.fn, <span class="dt">write.type =</span> <span class="st">&quot;yaml&quot;</span>, <span class="dt">indent =</span> <span class="dv">4</span>)
 <span class="co">#&gt; [1] TRUE</span>
 <span class="kw">get.config.type</span>(out.fn)
-<span class="co">#&gt; [1] &quot;yaml&quot;</span></code></pre></div>
+<span class="co">#&gt; [1] &quot;yaml&quot;</span>
+
+<span class="co"># Generate a YAML format configuration file with defined indent and pointed sections</span>
+<span class="co">#write.config(config.dat = list.test, file.path = out.fn, write.type = &quot;yaml&quot;, sections = &quot;a&quot;, indent = 4)</span>
+<span class="co">#get.config.type(out.fn)</span></code></pre></div>
 </div>
 <div id="configr-specific-extra-parse" class="section level2">
 <h2>Configr specific extra parse</h2>
@@ -329,7 +333,7 @@ config.<span class="dv">1</span>[sections]
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $rcmd_parse</span>
 <span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;2017-06-22&quot;</span>
+<span class="co">#&gt; [1] &quot;2017-07-18&quot;</span>
 <span class="kw">parse.extra</span>(config.<span class="dv">1</span>, <span class="dt">extra.list =</span> <span class="kw">list</span>(<span class="dt">debug =</span> <span class="st">&quot;self&quot;</span>, <span class="dt">debug2 =</span> <span class="st">&quot;self2&quot;</span>), 
   <span class="dt">other.config =</span> other.config, <span class="dt">rcmd.parse =</span> T)[sections]
 <span class="co">#&gt; $default</span>
@@ -347,7 +351,7 @@ config.<span class="dv">1</span>[sections]
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $rcmd_parse</span>
 <span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;2017-06-22&quot;</span>
+<span class="co">#&gt; [1] &quot;2017-07-18&quot;</span>
 
 
 sections &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'other_config_parse'</span>, <span class="st">'rcmd_parse'</span>, <span class="st">'mulitple_parse'</span>)
@@ -393,7 +397,7 @@ config.<span class="dv">1</span>[sections]
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $rcmd_parse</span>
 <span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;2017-06-22&quot;</span>
+<span class="co">#&gt; [1] &quot;2017-07-18&quot;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $mulitple_parse</span>
@@ -420,6 +424,18 @@ expect.parsed.<span class="dv">2</span> &lt;-<span class="st"> </span><span clas
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $nochange</span>
 <span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></code></pre></div>
+</div>
+<div id="others" class="section level2">
+<h2>Others</h2>
+<p><code>config.section.del</code> can be used to delete a section of config, just do <code>config$section &lt;- NULL</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">config &lt;-<span class="st"> </span><span class="kw">read.config</span>(<span class="dt">file =</span> config.json, <span class="dt">extra.list =</span> <span class="kw">list</span>(<span class="dt">debug =</span> <span class="st">&quot;self&quot;</span>, <span class="dt">debug2 =</span> <span class="st">&quot;self2&quot;</span>), 
+  <span class="dt">other.config =</span> other.config)[sections]
+<span class="kw">names</span>(config)
+<span class="co">#&gt; [1] &quot;default&quot;            &quot;other_config_parse&quot; &quot;rcmd_parse&quot;        </span>
+<span class="co">#&gt; [4] &quot;mulitple_parse&quot;</span>
+config &lt;-<span class="st"> </span><span class="kw">config.sections.del</span>(config, <span class="st">'default'</span>)
+<span class="kw">names</span>(config)
+<span class="co">#&gt; [1] &quot;other_config_parse&quot; &quot;rcmd_parse&quot;         &quot;mulitple_parse&quot;</span></code></pre></div>
 </div>
 
 
