@@ -1,454 +1,745 @@
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
+<title>Built-in examples of configuration file</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
 
-<meta name="author" content="Jianfeng Li" />
-
-<meta name="date" content="2017-07-18" />
-
-<title>Usage of configr</title>
-
-
-
-<style type="text/css">code{white-space: pre;}</style>
+<!-- Styles for R syntax highlighter -->
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
 </style>
 
 
 
-<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
-
 </head>
 
 <body>
-
-
-
-
-<h1 class="title toc-ignore">Usage of configr</h1>
-<h4 class="author"><em>Jianfeng Li</em></h4>
-<h4 class="date"><em>2017-07-18</em></h4>
-
-
-
 <p>configr is an integrated parser package that json, ini, yaml and toml format files can now be processed. The vignette will walk you through the basics of using configr to extend existing parser in R.</p>
-<div id="built-in-examples-of-configuration-file" class="section level2">
+
 <h2>Built-in examples of configuration file</h2>
+
 <p>Example of json, ini, yaml, toml can be used follow the instructions below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(configr)
-config.json &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.json'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)
-config.ini &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.ini'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)
-config.yaml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.yaml'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)
-config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.toml'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)</code></pre></div>
-</div>
-<div id="check-the-configuration-file-type" class="section level2">
+
+<pre><code class="r">library(configr)
+config.json &lt;- system.file(&#39;extdata&#39;, &#39;config.json&#39;, package=&#39;configr&#39;)
+config.ini &lt;- system.file(&#39;extdata&#39;, &#39;config.ini&#39;, package=&#39;configr&#39;)
+config.yaml &lt;- system.file(&#39;extdata&#39;, &#39;config.yaml&#39;, package=&#39;configr&#39;)
+config.toml &lt;- system.file(&#39;extdata&#39;, &#39;config.toml&#39;, package=&#39;configr&#39;)
+</code></pre>
+
 <h2>Check the configuration file type</h2>
+
 <p><code>is.json.file</code>, <code>is.ini.file</code>, <code>is.yaml.file</code> and <code>is.toml.file</code> can be used to check the configuration file type. If input file were coincident with required, it will return TRUE. <code>get.config.type</code> will using above functions and get the file type name: json, ini, yaml, toml or FALSE.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.json.file</span>(config.json)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.toml.file</span>(config.toml)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.ini.file</span>(config.ini)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">is.yaml.file</span>(config.yaml)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">get.config.type</span>(config.json)
-<span class="co">#&gt; [1] &quot;json&quot;</span>
-<span class="kw">get.config.type</span>(config.yaml)
-<span class="co">#&gt; [1] &quot;yaml&quot;</span>
-<span class="kw">get.config.type</span>(config.ini)
-<span class="co">#&gt; [1] &quot;ini&quot;</span>
-<span class="kw">get.config.type</span>(config.toml)
-<span class="co">#&gt; [1] &quot;toml&quot;</span></code></pre></div>
-</div>
-<div id="get-the-configuration-section-names" class="section level2">
+
+<pre><code class="r">is.json.file(config.json)
+#&gt; [1] TRUE
+is.toml.file(config.toml)
+#&gt; [1] TRUE
+is.ini.file(config.ini)
+#&gt; [1] TRUE
+is.yaml.file(config.yaml)
+#&gt; [1] TRUE
+get.config.type(config.json)
+#&gt; [1] &quot;json&quot;
+get.config.type(config.yaml)
+#&gt; [1] &quot;yaml&quot;
+get.config.type(config.ini)
+#&gt; [1] &quot;ini&quot;
+get.config.type(config.toml)
+#&gt; [1] &quot;toml&quot;
+</code></pre>
+
 <h2>Get the configuration section names</h2>
+
 <p>Section names of configuration file can be get using <code>eval.config.sections</code>. Python package <a href="https://pypi.python.org/pypi/configparser">ConfigParser</a> <code>sections</code> inspired us to add this function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">eval.config.sections</span>(config.ini)
-<span class="co">#&gt; [1] &quot;default&quot;            &quot;comments&quot;           &quot;extra_list_parse&quot;  </span>
-<span class="co">#&gt; [4] &quot;other_config_parse&quot; &quot;rcmd_parse&quot;         &quot;bash_parse&quot;        </span>
-<span class="co">#&gt; [7] &quot;mulitple_parse&quot;     &quot;glue_parse&quot;</span>
-<span class="kw">eval.config.sections</span>(config.toml)
-<span class="co">#&gt; [1] &quot;bash_parse&quot;         &quot;comments&quot;           &quot;default&quot;           </span>
-<span class="co">#&gt; [4] &quot;extra_list_parse&quot;   &quot;glue_parse&quot;         &quot;mulitple_parse&quot;    </span>
-<span class="co">#&gt; [7] &quot;other_config_parse&quot; &quot;title&quot;</span></code></pre></div>
-</div>
-<div id="read-the-configuration-file" class="section level2">
+
+<pre><code class="r">eval.config.sections(config.ini)
+#&gt; [1] &quot;default&quot;            &quot;comments&quot;           &quot;extra_list_parse&quot;  
+#&gt; [4] &quot;other_config_parse&quot; &quot;rcmd_parse&quot;         &quot;bash_parse&quot;        
+#&gt; [7] &quot;mulitple_parse&quot;     &quot;glue_parse&quot;
+eval.config.sections(config.toml)
+#&gt; [1] &quot;bash_parse&quot;         &quot;comments&quot;           &quot;default&quot;           
+#&gt; [4] &quot;extra_list_parse&quot;   &quot;glue_parse&quot;         &quot;mulitple_parse&quot;    
+#&gt; [7] &quot;other_config_parse&quot; &quot;title&quot;
+</code></pre>
+
 <h2>Read the configuration file</h2>
+
 <p><code>read.config</code> can read a configuration file in R and as a list object that can pass parameter to inner read function (fromJSON/read.ini/yaml.load_file/parseToml) accordingly.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Read in R as a list (JSON/INI/YAML/TOML be suported)</span>
-<span class="co"># fromJSON/read.ini/readLines/yaml.load  parameters can be automatch by parameter name (encoding .etc.)</span>
-<span class="kw">read.config</span>(<span class="dt">file =</span> config.toml)
-<span class="co">#&gt; List of 8</span>
-<span class="co">#&gt;  $ bash_parse        :List of 2</span>
-<span class="co">#&gt;   ..$ parsed: chr &quot;bash&quot;</span>
-<span class="co">#&gt;   ..$ raw   : chr &quot;#&gt;#echo bash#&lt;#&quot;</span>
-<span class="co">#&gt;  $ comments          :List of 1</span>
-<span class="co">#&gt;   ..$ version: chr &quot;0.2.3&quot;</span>
-<span class="co">#&gt;  $ default           :List of 1</span>
-<span class="co">#&gt;   ..$ debug: chr &quot;{{debug}} {{debug2}}&quot;</span>
-<span class="co">#&gt;  $ extra_list_parse  :List of 2</span>
-<span class="co">#&gt;   ..$ parsed: chr &quot;1&quot;</span>
-<span class="co">#&gt;   ..$ raw   : chr &quot;{{yes}}&quot;</span>
-<span class="co">#&gt;  $ glue_parse        :List of 4</span>
-<span class="co">#&gt;   ..$ parsed_1: chr [1:10] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span>
-<span class="co">#&gt;   ..$ parsed_2: int [1:10] 1 2 3 4 5 6 7 8 9 10</span>
-<span class="co">#&gt;   ..$ raw_1   : chr &quot;!!glue {1:10}&quot;</span>
-<span class="co">#&gt;   ..$ raw_2   : chr &quot;!!glue_numeric {1:10}&quot;</span>
-<span class="co">#&gt;  $ mulitple_parse    :List of 2</span>
-<span class="co">#&gt;   ..$ parsed: chr &quot;configr, configr, yes, 1, config, config, no, 0&quot;</span>
-<span class="co">#&gt;   ..$ raw   : chr &quot;@&gt;@str_replace('config','g$','gr')@&lt;@, #&gt;#echo configr#&lt;#, {{key:yes_flag}}, {{yes}}, @&gt;@str_replace('configr',&quot;| __truncated__</span>
-<span class="co">#&gt;  $ other_config_parse:List of 2</span>
-<span class="co">#&gt;   ..$ parsed: chr &quot;yes no&quot;</span>
-<span class="co">#&gt;   ..$ raw   : chr &quot;{{key:yes_flag}} {{key:no_flag}}&quot;</span>
-<span class="co">#&gt;  $ title             : chr &quot;TOML Example&quot;</span></code></pre></div>
+
+<pre><code class="r"># Read in R as a list (JSON/INI/YAML/TOML be suported)
+# fromJSON/read.ini/readLines/yaml.load  parameters can be automatch by parameter name (encoding .etc.)
+read.config(file = config.toml)
+#&gt; List of 8
+#&gt;  $ bash_parse        :List of 2
+#&gt;   ..$ parsed: chr &quot;bash&quot;
+#&gt;   ..$ raw   : chr &quot;#&gt;#echo bash#&lt;#&quot;
+#&gt;  $ comments          :List of 1
+#&gt;   ..$ version: chr &quot;0.2.3&quot;
+#&gt;  $ default           :List of 1
+#&gt;   ..$ debug: chr &quot;{{debug}} {{debug2}}&quot;
+#&gt;  $ extra_list_parse  :List of 2
+#&gt;   ..$ parsed: chr &quot;1&quot;
+#&gt;   ..$ raw   : chr &quot;{{yes}}&quot;
+#&gt;  $ glue_parse        :List of 4
+#&gt;   ..$ parsed_1: chr [1:10] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+#&gt;   ..$ parsed_2: int [1:10] 1 2 3 4 5 6 7 8 9 10
+#&gt;   ..$ raw_1   : chr &quot;!!glue {1:10}&quot;
+#&gt;   ..$ raw_2   : chr &quot;!!glue_numeric {1:10}&quot;
+#&gt;  $ mulitple_parse    :List of 2
+#&gt;   ..$ parsed: chr &quot;configr, configr, yes, 1, config, config, no, 0&quot;
+#&gt;   ..$ raw   : chr &quot;@&gt;@str_replace(&#39;config&#39;,&#39;g$&#39;,&#39;gr&#39;)@&lt;@, #&gt;#echo configr#&lt;#, {{key:yes_flag}}, {{yes}}, @&gt;@str_replace(&#39;configr&#39;,&quot;| __truncated__
+#&gt;  $ other_config_parse:List of 2
+#&gt;   ..$ parsed: chr &quot;yes no&quot;
+#&gt;   ..$ raw   : chr &quot;{{key:yes_flag}} {{key:no_flag}}&quot;
+#&gt;  $ title             : chr &quot;TOML Example&quot;
+</code></pre>
+
 <p><code>eval.config</code> return a value or a list object containing the file path, config group, filetype as the attribute.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get the same obj with config package, only get the </span>
-<span class="co"># 'default or R_CONFIG_ACTIVE config sets' in config.cfg or R_CONFIGFILE_ACTIVE</span>
-<span class="kw">eval.config</span>(<span class="dt">file =</span> config.yaml)
-<span class="co">#&gt; $debug</span>
-<span class="co">#&gt; [1] &quot;{{debug}} {{debug2}}&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,&quot;config&quot;)</span>
-<span class="co">#&gt; [1] &quot;default&quot;</span>
-<span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
-<span class="co">#&gt; [1] &quot;yaml&quot;</span>
-<span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp2yKLg6/Rinst1762b6d95d8ff/configr/extdata/config.yaml&quot;</span>
 
-<span class="co"># Read designated section</span>
-<span class="kw">eval.config</span>(<span class="dt">file =</span> config.json, <span class="dt">config =</span> <span class="st">&quot;comments&quot;</span>)
-<span class="co">#&gt; $version</span>
-<span class="co">#&gt; [1] &quot;0.2.3&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,&quot;config&quot;)</span>
-<span class="co">#&gt; [1] &quot;comments&quot;</span>
-<span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
-<span class="co">#&gt; [1] &quot;json&quot;</span>
-<span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp2yKLg6/Rinst1762b6d95d8ff/configr/extdata/config.json&quot;</span>
+<pre><code class="r"># Get the same obj with config package, only get the 
+# &#39;default or R_CONFIG_ACTIVE config sets&#39; in config.cfg or R_CONFIGFILE_ACTIVE
+eval.config(file = config.yaml)
+#&gt; $debug
+#&gt; [1] &quot;{{debug}} {{debug2}}&quot;
+#&gt; 
+#&gt; attr(,&quot;config&quot;)
+#&gt; [1] &quot;default&quot;
+#&gt; attr(,&quot;configtype&quot;)
+#&gt; [1] &quot;yaml&quot;
+#&gt; attr(,&quot;file&quot;)
+#&gt; [1] &quot;/tmp/Rtmpv46Gqb/Rinst1da3811780033/configr/extdata/config.yaml&quot;
 
-<span class="co"># Read designated section with its one value</span>
-<span class="kw">eval.config</span>(<span class="dt">file =</span> config.ini, <span class="dt">config =</span> <span class="st">&quot;comments&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;version&quot;</span>)
-<span class="co">#&gt; [1] &quot;0.2.3&quot;</span></code></pre></div>
+# Read designated section
+eval.config(file = config.json, config = &quot;comments&quot;)
+#&gt; $version
+#&gt; [1] &quot;0.2.3&quot;
+#&gt; 
+#&gt; attr(,&quot;config&quot;)
+#&gt; [1] &quot;comments&quot;
+#&gt; attr(,&quot;configtype&quot;)
+#&gt; [1] &quot;json&quot;
+#&gt; attr(,&quot;file&quot;)
+#&gt; [1] &quot;/tmp/Rtmpv46Gqb/Rinst1da3811780033/configr/extdata/config.json&quot;
+
+# Read designated section with its one value
+eval.config(file = config.ini, config = &quot;comments&quot;, value = &quot;version&quot;)
+#&gt; [1] &quot;0.2.3&quot;
+</code></pre>
+
 <p><code>eval.config.merge</code> will merge multiple sections (equal to <code>config</code> in <code>eval.config</code> function) and reduce the layer of configuration file.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">eval.config.merge</span>(<span class="dt">file =</span> config.json, <span class="dt">sections =</span> <span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'comments'</span>))
-<span class="co">#&gt; $debug</span>
-<span class="co">#&gt; [1] &quot;{{debug}} {{debug2}}&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $version</span>
-<span class="co">#&gt; [1] &quot;0.2.3&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,&quot;config&quot;)</span>
-<span class="co">#&gt; [1] &quot;default&quot;  &quot;comments&quot;</span>
-<span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
-<span class="co">#&gt; [1] &quot;json&quot;</span>
-<span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp2yKLg6/Rinst1762b6d95d8ff/configr/extdata/config.json&quot;</span>
-<span class="kw">eval.config.merge</span>(<span class="dt">file =</span> config.toml, <span class="dt">sections =</span> <span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'comments'</span>))
-<span class="co">#&gt; $debug</span>
-<span class="co">#&gt; [1] &quot;{{debug}} {{debug2}}&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $version</span>
-<span class="co">#&gt; [1] &quot;0.2.3&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attr(,&quot;config&quot;)</span>
-<span class="co">#&gt; [1] &quot;default&quot;  &quot;comments&quot;</span>
-<span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
-<span class="co">#&gt; [1] &quot;toml&quot;</span>
-<span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp2yKLg6/Rinst1762b6d95d8ff/configr/extdata/config.toml&quot;</span></code></pre></div>
-</div>
-<div id="converting-and-writing-configuration-file" class="section level2">
+
+<pre><code class="r">eval.config.merge(file = config.json, sections = c(&#39;default&#39;, &#39;comments&#39;))
+#&gt; $debug
+#&gt; [1] &quot;{{debug}} {{debug2}}&quot;
+#&gt; 
+#&gt; $version
+#&gt; [1] &quot;0.2.3&quot;
+#&gt; 
+#&gt; attr(,&quot;config&quot;)
+#&gt; [1] &quot;default&quot;  &quot;comments&quot;
+#&gt; attr(,&quot;configtype&quot;)
+#&gt; [1] &quot;json&quot;
+#&gt; attr(,&quot;file&quot;)
+#&gt; [1] &quot;/tmp/Rtmpv46Gqb/Rinst1da3811780033/configr/extdata/config.json&quot;
+eval.config.merge(file = config.toml, sections = c(&#39;default&#39;, &#39;comments&#39;))
+#&gt; $debug
+#&gt; [1] &quot;{{debug}} {{debug2}}&quot;
+#&gt; 
+#&gt; $version
+#&gt; [1] &quot;0.2.3&quot;
+#&gt; 
+#&gt; attr(,&quot;config&quot;)
+#&gt; [1] &quot;default&quot;  &quot;comments&quot;
+#&gt; attr(,&quot;configtype&quot;)
+#&gt; [1] &quot;toml&quot;
+#&gt; attr(,&quot;file&quot;)
+#&gt; [1] &quot;/tmp/Rtmpv46Gqb/Rinst1da3811780033/configr/extdata/config.toml&quot;
+</code></pre>
+
+<p><code>fetch.config</code> can parse configuration files from internet and local that merged the files and return a list.</p>
+
+<pre><code class="r">links &lt;- c(&quot;https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/db_annovar.toml&quot;, 
+           &quot;https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/db_main.toml&quot;, 
+           system.file(&#39;extdata&#39;, &#39;config.toml&#39;, package = &quot;configr&quot;))
+x &lt;- fetch.config(links)
+x[c(1:5, length(x))]
+#&gt; $db_annovar_1000g
+#&gt; $db_annovar_1000g$buildver_available
+#&gt; $db_annovar_1000g$buildver_available$`1000g`
+#&gt; [1] &quot;hg18&quot;
+#&gt; 
+#&gt; $db_annovar_1000g$buildver_available$`1000g2010`
+#&gt; [1] &quot;hg18&quot;
+#&gt; 
+#&gt; $db_annovar_1000g$buildver_available$`1000g2012apr`
+#&gt; [1] &quot;hg19&quot; &quot;hg18&quot;
+#&gt; 
+#&gt; $db_annovar_1000g$buildver_available$`1000g2012jul`
+#&gt; [1] &quot;hg18&quot;
+#&gt; 
+#&gt; $db_annovar_1000g$buildver_available$`1000g2014oct`
+#&gt; [1] &quot;hg38&quot; &quot;hg19&quot; &quot;hg18&quot;
+#&gt; 
+#&gt; $db_annovar_1000g$buildver_available$`1000g2015aug`
+#&gt; [1] &quot;hg38&quot; &quot;hg19&quot;
+#&gt; 
+#&gt; $db_annovar_1000g$buildver_available$other
+#&gt; [1] &quot;hg19&quot;
+#&gt; 
+#&gt; 
+#&gt; $db_annovar_1000g$description
+#&gt; [1] &quot;alternative allele frequency data in 1000 Genomes Project&quot;
+#&gt; 
+#&gt; $db_annovar_1000g$source_url
+#&gt; [1] &quot;http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.zip&quot;
+#&gt; 
+#&gt; $db_annovar_1000g$version_available
+#&gt;  [1] &quot;1000g2015aug&quot; &quot;1000g2014oct&quot; &quot;1000g2014sep&quot; &quot;1000g2014aug&quot;
+#&gt;  [5] &quot;1000g2012apr&quot; &quot;1000g2012feb&quot; &quot;1000g2011may&quot; &quot;1000g2010nov&quot;
+#&gt;  [9] &quot;1000g2012apr&quot; &quot;1000g2010jul&quot; &quot;1000g2010&quot;    &quot;1000g&quot;       
+#&gt; 
+#&gt; $db_annovar_1000g$version_newest
+#&gt; [1] &quot;1000g2015aug&quot;
+#&gt; 
+#&gt; 
+#&gt; $db_annovar_1000g_sqlite
+#&gt; $db_annovar_1000g_sqlite$buildver_available
+#&gt; [1] &quot;hg19&quot;
+#&gt; 
+#&gt; $db_annovar_1000g_sqlite$install
+#&gt; [1] &quot;#R#for(i in c(&#39;all&#39;, &#39;afr&#39;, &#39;eas&#39;, &#39;eur&#39;, &#39;sas&#39;, &#39;amr&#39;)) {\\n  x &lt;- set.1000g.db(sprintf(&#39;{{version}}_%s&#39;, i), &#39;{{buildver}}&#39;, \\\&quot;sql\\\&quot;);\\n  params &lt;- list(sql.file = x, sqlite.path = str_replace(x, &#39;.sql$&#39;, &#39;&#39;));\\n  do.call(sql2sqlite, params)\\n}\\n#R#&quot;
+#&gt; 
+#&gt; $db_annovar_1000g_sqlite$source_url
+#&gt; [1] &quot;http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.tar.gz&quot;
+#&gt; 
+#&gt; $db_annovar_1000g_sqlite$version_available
+#&gt; [1] &quot;1000g2015aug&quot;
+#&gt; 
+#&gt; $db_annovar_1000g_sqlite$version_newest
+#&gt; [1] &quot;1000g2015aug&quot;
+#&gt; 
+#&gt; 
+#&gt; $db_annovar_avsift
+#&gt; $db_annovar_avsift$buildver_available
+#&gt; [1] &quot;hg19&quot; &quot;hg18&quot;
+#&gt; 
+#&gt; $db_annovar_avsift$decompress
+#&gt; [1] TRUE TRUE
+#&gt; 
+#&gt; $db_annovar_avsift$description
+#&gt; [1] &quot;whole-exome SIFT scores for non-synonymous variants (obselete and should not be uesd any more)&quot;
+#&gt; 
+#&gt; $db_annovar_avsift$source_url
+#&gt; [1] &quot;http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz&quot;    
+#&gt; [2] &quot;http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz&quot;
+#&gt; 
+#&gt; $db_annovar_avsift$version_available
+#&gt; [1] &quot;avsift&quot;
+#&gt; 
+#&gt; $db_annovar_avsift$version_newest
+#&gt; [1] &quot;avsift&quot;
+#&gt; 
+#&gt; 
+#&gt; $db_annovar_avsnp
+#&gt; $db_annovar_avsnp$buildver_available
+#&gt; $db_annovar_avsnp$buildver_available$avsnp138
+#&gt; [1] &quot;hg19&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp$buildver_available$avsnp142
+#&gt; [1] &quot;hg38&quot; &quot;hg19&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp$buildver_available$avsnp144
+#&gt; [1] &quot;hg38&quot; &quot;hg19&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp$buildver_available$avsnp147
+#&gt; [1] &quot;hg38&quot; &quot;hg19&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp$buildver_available$avsnp150
+#&gt; [1] &quot;hg38&quot; &quot;hg19&quot;
+#&gt; 
+#&gt; 
+#&gt; $db_annovar_avsnp$decompress
+#&gt; [1] TRUE TRUE
+#&gt; 
+#&gt; $db_annovar_avsnp$description
+#&gt; $db_annovar_avsnp$description$avsnp138
+#&gt; [1] &quot;dbSNP138 with allelic splitting and left-normalization&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp$description$avsnp142
+#&gt; [1] &quot;dbSNP142 with allelic splitting and left-normalization&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp$description$avsnp144
+#&gt; [1] &quot;dbSNP144 with allelic splitting and left-normalization (http://annovar.openbioinformatics.org/en/latest/articles/dbSNP/#additional-discussions)&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp$description$avsnp147
+#&gt; [1] &quot;dbSNP147 with allelic splitting and left-normalization&quot;
+#&gt; 
+#&gt; 
+#&gt; $db_annovar_avsnp$source_url
+#&gt; [1] &quot;http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.gz&quot;    
+#&gt; [2] &quot;http://www.openbioinformatics.org/annovar/download/{{buildver}}_{{version}}.txt.idx.gz&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp$version_available
+#&gt; [1] &quot;avsnp150&quot; &quot;avsnp147&quot; &quot;avsnp144&quot; &quot;avsnp142&quot; &quot;avsnp138&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp$version_newest
+#&gt; [1] &quot;avsnp150&quot;
+#&gt; 
+#&gt; 
+#&gt; $db_annovar_avsnp_sqlite
+#&gt; $db_annovar_avsnp_sqlite$buildver_available
+#&gt; [1] &quot;hg19&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp_sqlite$install
+#&gt; [1] &quot;#R#sql2sqlite(&#39;{{buildver}}_{{version}}.sqlite.sql&#39;, sqlite.path = &#39;{{buildver}}_{{version}}.sqlite&#39;)#R#&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp_sqlite$source_url
+#&gt; [1] &quot;http://bioinfo.rjh.com.cn/download/annovarR/humandb/{{buildver}}_{{version}}.sqlite.sql.gz&quot;
+#&gt; 
+#&gt; $db_annovar_avsnp_sqlite$version_available
+#&gt; [1] &quot;avsnp147&quot;        &quot;avsnp147.common&quot; &quot;avsnp144&quot;        &quot;avsnp142&quot;       
+#&gt; [5] &quot;avsnp138&quot;       
+#&gt; 
+#&gt; $db_annovar_avsnp_sqlite$version_newest
+#&gt; [1] &quot;avsnp147&quot;
+#&gt; 
+#&gt; 
+#&gt; $title
+#&gt; [1] &quot;TOML Example&quot;
+</code></pre>
+
 <h2>Converting and writing configuration file</h2>
+
 <p><code>convert.config</code> will read a configuration file and write a configuration file with appointed file type (json. ini, yaml). Moreover, <code>write.config</code> is similar to <code>convert.config</code> but using the list object rather than a file.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Convert YAML configuration file to JSON format</span>
-out.json &lt;-<span class="st"> </span><span class="kw">tempfile</span>(, <span class="dt">fileext =</span> <span class="st">&quot;.json&quot;</span>)
-<span class="kw">convert.config</span>(<span class="dt">file =</span> config.yaml, <span class="dt">out.file =</span> out.json, <span class="dt">convert.to =</span> <span class="st">&quot;JSON&quot;</span>)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">get.config.type</span>(out.json)
-<span class="co">#&gt; [1] &quot;json&quot;</span>
 
-<span class="co"># Generate a JSON format configuration file</span>
-list.test &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a=</span><span class="kw">c</span>(<span class="dv">123</span>,<span class="dv">456</span>))
-out.fn &lt;-<span class="st"> </span><span class="kw">sprintf</span>(<span class="st">&quot;%s/test.json&quot;</span>, <span class="kw">tempdir</span>())
-<span class="kw">write.config</span>(<span class="dt">config.dat =</span> list.test, <span class="dt">file.path =</span> out.fn, <span class="dt">write.type =</span> <span class="st">&quot;json&quot;</span>)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">get.config.type</span>(out.fn)
-<span class="co">#&gt; [1] &quot;json&quot;</span>
+<pre><code class="r"># Convert YAML configuration file to JSON format
+out.json &lt;- tempfile(, fileext = &quot;.json&quot;)
+convert.config(file = config.yaml, out.file = out.json, convert.to = &quot;JSON&quot;)
+#&gt; [1] TRUE
+get.config.type(out.json)
+#&gt; [1] &quot;json&quot;
 
-<span class="co"># Generate a YAML format configuration file with defined indent</span>
-<span class="kw">write.config</span>(<span class="dt">config.dat =</span> list.test, <span class="dt">file.path =</span> out.fn, <span class="dt">write.type =</span> <span class="st">&quot;yaml&quot;</span>, <span class="dt">indent =</span> <span class="dv">4</span>)
-<span class="co">#&gt; [1] TRUE</span>
-<span class="kw">get.config.type</span>(out.fn)
-<span class="co">#&gt; [1] &quot;yaml&quot;</span>
+# Generate a JSON format configuration file
+list.test &lt;- list(a=c(123,456))
+out.fn &lt;- sprintf(&quot;%s/test.json&quot;, tempdir())
+write.config(config.dat = list.test, file.path = out.fn, write.type = &quot;json&quot;)
+#&gt; [1] TRUE
+get.config.type(out.fn)
+#&gt; [1] &quot;json&quot;
 
-<span class="co"># Generate a YAML format configuration file with defined indent and pointed sections</span>
-<span class="co">#write.config(config.dat = list.test, file.path = out.fn, write.type = &quot;yaml&quot;, sections = &quot;a&quot;, indent = 4)</span>
-<span class="co">#get.config.type(out.fn)</span></code></pre></div>
-</div>
-<div id="configr-specific-extra-parse" class="section level2">
+# Generate a YAML format configuration file with defined indent
+write.config(config.dat = list.test, file.path = out.fn, write.type = &quot;yaml&quot;, indent = 4)
+#&gt; [1] TRUE
+get.config.type(out.fn)
+#&gt; [1] &quot;yaml&quot;
+
+# Generate a YAML format configuration file with defined indent and pointed sections
+#write.config(config.dat = list.test, file.path = out.fn, write.type = &quot;yaml&quot;, sections = &quot;a&quot;, indent = 4)
+#get.config.type(out.fn)
+</code></pre>
+
 <h2>Configr specific extra parse</h2>
+
 <p>configr own several userful extra parse function, you can use the <code>parse.extra</code> to finish these work for any list object. Of course, <code>read.config</code>, <code>eval.config</code> and <code>eval.config.merge</code> can directly using <code>parse.extra</code> by passing parameters to <code>parse.extra</code>.</p>
+
 <ul>
-<li><code>extra.list</code> can be used to parse the value of <code>{{debug}}</code> to <code>self</code> if you setted <code>extra.list = list(debug = 'self')</code></li>
-<li><code>other.config</code> can be used to parse the value of <code>{{key:yes_flag}}</code> to <code>yes</code> if you setted <code>other.config = system.file('extdata', 'config.other.yaml', package='configr')</code> which content can be founded below.</li>
-<li><code>rcmd.parse</code> can be used to parse the value of <code>@&gt;@str_replace('config','g$','gr')@&lt;@</code> to <code>configr</code> if you setted <code>rcmd.parse = TRUE</code>.</li>
+<li><code>extra.list</code> can be used to parse the value of <code>{{debug}}</code> to <code>self</code> if you setted <code>extra.list = list(debug = &#39;self&#39;)</code></li>
+<li><code>other.config</code> can be used to parse the value of <code>{{key:yes_flag}}</code> to <code>yes</code> if you setted <code>other.config = system.file(&#39;extdata&#39;, &#39;config.other.yaml&#39;, package=&#39;configr&#39;)</code> which content can be founded below.</li>
+<li><code>rcmd.parse</code> can be used to parse the value of <code>@&gt;@str_replace(&#39;config&#39;,&#39;g$&#39;,&#39;gr&#39;)@&lt;@</code> to <code>configr</code> if you setted <code>rcmd.parse = TRUE</code>.</li>
 <li><code>bash.parse</code> can be used to parse the value of <code>#&gt;#echo bash#&lt;#</code> to <code>bash</code> if you setted <code>bash.parse = TRUE</code>.</li>
-<li><code>glue.parse</code> can be used to paste the value of <code>!!glue {1:5}</code> to <code>[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;]</code>; <code>!!glue_numeric {1:5}</code> to [1, 2, 3, 4, 5]</li>
+<li><code>glue.parse</code> can be used to paste the value of <code>!!glue {1:5}</code> to <code>[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;]</code>; <code>!!glue_numeric {1:5}</code> to [1, 2, 3, 4, 5] </li>
 </ul>
-<p><strong>Note:</strong> <code>glue.parse</code> using the <code>glue</code> package <code>glue</code> function to do that. Just like glue(‘{1:5}’) and be processed by unname(unlist(x)). The <code>!!glue</code> can be changed if you setted <code>glue.flag</code>. It is a remarkable fact that only contain the <code>glue.flag</code> character be parsed and the order of item will be changed if the <code>glue</code> result were multiple values. e.g. <code>['{a}', '!!glue {1:5}', '{{a}}']</code> will be parsed to <code>['{a}', '1', '2', '3', '4', '5', '{{a}}']</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">other.config &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.other.yaml'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)
 
-<span class="kw">read.config</span>(<span class="dt">file =</span> other.config)
-<span class="co">#&gt; $key</span>
-<span class="co">#&gt; $key$test_parse</span>
-<span class="co">#&gt; [1] 123</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $key$test_parse2</span>
-<span class="co">#&gt; [1] 234</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $key$yes_flag</span>
-<span class="co">#&gt; [1] &quot;yes&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $key$no_flag</span>
-<span class="co">#&gt; [1] &quot;no&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $`samtools@1.3.1`</span>
-<span class="co">#&gt; $`samtools@1.3.1`$source_dir</span>
-<span class="co">#&gt; [1] &quot;/tmp&quot;</span>
+<p><strong>Note:</strong> <code>glue.parse</code> using the <code>glue</code> package <code>glue</code> function to do that. Just like glue(&#39;{1:5}&#39;) and be processed by unname(unlist(x)). 
+The <code>!!glue</code> can be changed if you setted <code>glue.flag</code>. It is a remarkable fact that only contain the <code>glue.flag</code> character be parsed and the order of item will be changed if the <code>glue</code> result were multiple values. e.g. <code>[&#39;{a}&#39;, &#39;!!glue {1:5}&#39;, &#39;{{a}}&#39;]</code> will be parsed to <code>[&#39;{a}&#39;, &#39;1&#39;, &#39;2&#39;, &#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;{{a}}&#39;]</code></p>
 
-config.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">read.config</span>(<span class="dt">file =</span> config.json)
-config.<span class="dv">1</span><span class="op">$</span>default
-<span class="co">#&gt; $debug</span>
-<span class="co">#&gt; [1] &quot;{{debug}} {{debug2}}&quot;</span>
-<span class="kw">read.config</span>(<span class="dt">file =</span> config.json, <span class="dt">extra.list =</span> <span class="kw">list</span>(<span class="dt">debug =</span> <span class="st">&quot;self&quot;</span>, <span class="dt">debug2 =</span> <span class="st">&quot;self2&quot;</span>))<span class="op">$</span>default
-<span class="co">#&gt; $debug</span>
-<span class="co">#&gt; [1] &quot;self self2&quot;</span>
+<pre><code class="r">other.config &lt;- system.file(&#39;extdata&#39;, &#39;config.other.yaml&#39;, package=&#39;configr&#39;)
 
-sections &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'other_config_parse'</span>)
-config.<span class="dv">1</span>[sections]
-<span class="co">#&gt; $default</span>
-<span class="co">#&gt; $default$debug</span>
-<span class="co">#&gt; [1] &quot;{{debug}} {{debug2}}&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse</span>
-<span class="co">#&gt; $other_config_parse$raw</span>
-<span class="co">#&gt; [1] &quot;{{key:yes_flag}} {{key:no_flag}}&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse$parsed</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
-<span class="kw">read.config</span>(<span class="dt">file =</span> config.json, <span class="dt">extra.list =</span> <span class="kw">list</span>(<span class="dt">debug =</span> <span class="st">&quot;self&quot;</span>, <span class="dt">debug2 =</span> <span class="st">&quot;self2&quot;</span>), 
-  <span class="dt">other.config =</span> other.config)[sections]
-<span class="co">#&gt; $default</span>
-<span class="co">#&gt; $default$debug</span>
-<span class="co">#&gt; [1] &quot;self self2&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse</span>
-<span class="co">#&gt; $other_config_parse$raw</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse$parsed</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
+read.config(file = other.config)
+#&gt; $key
+#&gt; $key$test_parse
+#&gt; [1] 123
+#&gt; 
+#&gt; $key$test_parse2
+#&gt; [1] 234
+#&gt; 
+#&gt; $key$yes_flag
+#&gt; [1] &quot;yes&quot;
+#&gt; 
+#&gt; $key$no_flag
+#&gt; [1] &quot;no&quot;
+#&gt; 
+#&gt; 
+#&gt; $`samtools@1.3.1`
+#&gt; $`samtools@1.3.1`$source_dir
+#&gt; [1] &quot;/tmp&quot;
 
-sections &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'other_config_parse'</span>, <span class="st">'rcmd_parse'</span>)
-<span class="co"># The followed two line command will return the same value</span>
-config.<span class="dv">1</span>[sections]
-<span class="co">#&gt; $default</span>
-<span class="co">#&gt; $default$debug</span>
-<span class="co">#&gt; [1] &quot;{{debug}} {{debug2}}&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse</span>
-<span class="co">#&gt; $other_config_parse$raw</span>
-<span class="co">#&gt; [1] &quot;{{key:yes_flag}} {{key:no_flag}}&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse$parsed</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $rcmd_parse</span>
-<span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;@&gt;@ Sys.Date() @&lt;@&quot;</span>
-<span class="kw">read.config</span>(<span class="dt">file =</span> config.json, <span class="dt">extra.list =</span> <span class="kw">list</span>(<span class="dt">debug =</span> <span class="st">&quot;self&quot;</span>, <span class="dt">debug2 =</span> <span class="st">&quot;self2&quot;</span>), 
-  <span class="dt">other.config =</span> other.config, <span class="dt">rcmd.parse =</span> T)[sections]
-<span class="co">#&gt; $default</span>
-<span class="co">#&gt; $default$debug</span>
-<span class="co">#&gt; [1] &quot;self self2&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse</span>
-<span class="co">#&gt; $other_config_parse$raw</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse$parsed</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $rcmd_parse</span>
-<span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;2017-07-18&quot;</span>
-<span class="kw">parse.extra</span>(config.<span class="dv">1</span>, <span class="dt">extra.list =</span> <span class="kw">list</span>(<span class="dt">debug =</span> <span class="st">&quot;self&quot;</span>, <span class="dt">debug2 =</span> <span class="st">&quot;self2&quot;</span>), 
-  <span class="dt">other.config =</span> other.config, <span class="dt">rcmd.parse =</span> T)[sections]
-<span class="co">#&gt; $default</span>
-<span class="co">#&gt; $default$debug</span>
-<span class="co">#&gt; [1] &quot;self self2&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse</span>
-<span class="co">#&gt; $other_config_parse$raw</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse$parsed</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $rcmd_parse</span>
-<span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;2017-07-18&quot;</span>
+config.1 &lt;- read.config(file = config.json)
+config.1$default
+#&gt; $debug
+#&gt; [1] &quot;{{debug}} {{debug2}}&quot;
+read.config(file = config.json, extra.list = list(debug = &quot;self&quot;, debug2 = &quot;self2&quot;))$default
+#&gt; $debug
+#&gt; [1] &quot;self self2&quot;
+
+sections &lt;- c(&#39;default&#39;, &#39;other_config_parse&#39;)
+config.1[sections]
+#&gt; $default
+#&gt; $default$debug
+#&gt; [1] &quot;{{debug}} {{debug2}}&quot;
+#&gt; 
+#&gt; 
+#&gt; $other_config_parse
+#&gt; $other_config_parse$raw
+#&gt; [1] &quot;{{key:yes_flag}} {{key:no_flag}}&quot;
+#&gt; 
+#&gt; $other_config_parse$parsed
+#&gt; [1] &quot;yes no&quot;
+read.config(file = config.json, extra.list = list(debug = &quot;self&quot;, debug2 = &quot;self2&quot;), 
+  other.config = other.config)[sections]
+#&gt; $default
+#&gt; $default$debug
+#&gt; [1] &quot;self self2&quot;
+#&gt; 
+#&gt; 
+#&gt; $other_config_parse
+#&gt; $other_config_parse$raw
+#&gt; [1] &quot;yes no&quot;
+#&gt; 
+#&gt; $other_config_parse$parsed
+#&gt; [1] &quot;yes no&quot;
+
+sections &lt;- c(&#39;default&#39;, &#39;other_config_parse&#39;, &#39;rcmd_parse&#39;)
+# The followed two line command will return the same value
+config.1[sections]
+#&gt; $default
+#&gt; $default$debug
+#&gt; [1] &quot;{{debug}} {{debug2}}&quot;
+#&gt; 
+#&gt; 
+#&gt; $other_config_parse
+#&gt; $other_config_parse$raw
+#&gt; [1] &quot;{{key:yes_flag}} {{key:no_flag}}&quot;
+#&gt; 
+#&gt; $other_config_parse$parsed
+#&gt; [1] &quot;yes no&quot;
+#&gt; 
+#&gt; 
+#&gt; $rcmd_parse
+#&gt; $rcmd_parse$raw
+#&gt; [1] &quot;@&gt;@ Sys.Date() @&lt;@&quot;
+read.config(file = config.json, extra.list = list(debug = &quot;self&quot;, debug2 = &quot;self2&quot;), 
+  other.config = other.config, rcmd.parse = T)[sections]
+#&gt; $default
+#&gt; $default$debug
+#&gt; [1] &quot;self self2&quot;
+#&gt; 
+#&gt; 
+#&gt; $other_config_parse
+#&gt; $other_config_parse$raw
+#&gt; [1] &quot;yes no&quot;
+#&gt; 
+#&gt; $other_config_parse$parsed
+#&gt; [1] &quot;yes no&quot;
+#&gt; 
+#&gt; 
+#&gt; $rcmd_parse
+#&gt; $rcmd_parse$raw
+#&gt; [1] &quot;2017-11-21&quot;
+parse.extra(config.1, extra.list = list(debug = &quot;self&quot;, debug2 = &quot;self2&quot;), 
+  other.config = other.config, rcmd.parse = T)[sections]
+#&gt; $default
+#&gt; $default$debug
+#&gt; [1] &quot;self self2&quot;
+#&gt; 
+#&gt; 
+#&gt; $other_config_parse
+#&gt; $other_config_parse$raw
+#&gt; [1] &quot;yes no&quot;
+#&gt; 
+#&gt; $other_config_parse$parsed
+#&gt; [1] &quot;yes no&quot;
+#&gt; 
+#&gt; 
+#&gt; $rcmd_parse
+#&gt; $rcmd_parse$raw
+#&gt; [1] &quot;2017-11-21&quot;
 
 
-sections &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'other_config_parse'</span>, <span class="st">'rcmd_parse'</span>, <span class="st">'mulitple_parse'</span>)
-config.<span class="dv">1</span>[sections]
-<span class="co">#&gt; $default</span>
-<span class="co">#&gt; $default$debug</span>
-<span class="co">#&gt; [1] &quot;{{debug}} {{debug2}}&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse</span>
-<span class="co">#&gt; $other_config_parse$raw</span>
-<span class="co">#&gt; [1] &quot;{{key:yes_flag}} {{key:no_flag}}&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse$parsed</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $rcmd_parse</span>
-<span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;@&gt;@ Sys.Date() @&lt;@&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $mulitple_parse</span>
-<span class="co">#&gt; $mulitple_parse$raw</span>
-<span class="co">#&gt; [1] &quot;@&gt;@str_replace('config','g$','gr')@&lt;@, #&gt;#echo configr#&lt;#, {{key:yes_flag}}, {{yes}}, @&gt;@str_replace('configr','r','')@&lt;@, #&gt;# echo config#&lt;#, {{key:no_flag}}, {{no}}&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $mulitple_parse$parsed</span>
-<span class="co">#&gt; [1] &quot;configr, configr, yes, 1, config, config, no, 0&quot;</span>
-<span class="kw">parse.extra</span>(config.<span class="dv">1</span>, <span class="dt">extra.list =</span> <span class="kw">list</span>(<span class="dt">debug =</span> <span class="st">&quot;self&quot;</span>, <span class="dt">debug2 =</span> <span class="st">&quot;self2&quot;</span>, <span class="dt">yes =</span> <span class="st">&quot;1&quot;</span>, <span class="dt">no =</span> <span class="st">&quot;0&quot;</span>), 
-  <span class="dt">other.config =</span> other.config, <span class="dt">rcmd.parse =</span> T, <span class="dt">bash.parse =</span> T)[sections]
-<span class="co">#&gt; $default</span>
-<span class="co">#&gt; $default$debug</span>
-<span class="co">#&gt; [1] &quot;self self2&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse</span>
-<span class="co">#&gt; $other_config_parse$raw</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $other_config_parse$parsed</span>
-<span class="co">#&gt; [1] &quot;yes no&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $rcmd_parse</span>
-<span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;2017-07-18&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $mulitple_parse</span>
-<span class="co">#&gt; $mulitple_parse$raw</span>
-<span class="co">#&gt; [1] &quot;configr, configr, yes, 1, config, config, no, 0&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $mulitple_parse$parsed</span>
-<span class="co">#&gt; [1] &quot;configr, configr, yes, 1, config, config, no, 0&quot;</span>
+sections &lt;- c(&#39;default&#39;, &#39;other_config_parse&#39;, &#39;rcmd_parse&#39;, &#39;mulitple_parse&#39;)
+config.1[sections]
+#&gt; $default
+#&gt; $default$debug
+#&gt; [1] &quot;{{debug}} {{debug2}}&quot;
+#&gt; 
+#&gt; 
+#&gt; $other_config_parse
+#&gt; $other_config_parse$raw
+#&gt; [1] &quot;{{key:yes_flag}} {{key:no_flag}}&quot;
+#&gt; 
+#&gt; $other_config_parse$parsed
+#&gt; [1] &quot;yes no&quot;
+#&gt; 
+#&gt; 
+#&gt; $rcmd_parse
+#&gt; $rcmd_parse$raw
+#&gt; [1] &quot;@&gt;@ Sys.Date() @&lt;@&quot;
+#&gt; 
+#&gt; 
+#&gt; $mulitple_parse
+#&gt; $mulitple_parse$raw
+#&gt; [1] &quot;@&gt;@str_replace(&#39;config&#39;,&#39;g$&#39;,&#39;gr&#39;)@&lt;@, #&gt;#echo configr#&lt;#, {{key:yes_flag}}, {{yes}}, @&gt;@str_replace(&#39;configr&#39;,&#39;r&#39;,&#39;&#39;)@&lt;@, #&gt;# echo config#&lt;#, {{key:no_flag}}, {{no}}&quot;
+#&gt; 
+#&gt; $mulitple_parse$parsed
+#&gt; [1] &quot;configr, configr, yes, 1, config, config, no, 0&quot;
+parse.extra(config.1, extra.list = list(debug = &quot;self&quot;, debug2 = &quot;self2&quot;, yes = &quot;1&quot;, no = &quot;0&quot;), 
+  other.config = other.config, rcmd.parse = T, bash.parse = T)[sections]
+#&gt; $default
+#&gt; $default$debug
+#&gt; [1] &quot;self self2&quot;
+#&gt; 
+#&gt; 
+#&gt; $other_config_parse
+#&gt; $other_config_parse$raw
+#&gt; [1] &quot;yes no&quot;
+#&gt; 
+#&gt; $other_config_parse$parsed
+#&gt; [1] &quot;yes no&quot;
+#&gt; 
+#&gt; 
+#&gt; $rcmd_parse
+#&gt; $rcmd_parse$raw
+#&gt; [1] &quot;2017-11-21&quot;
+#&gt; 
+#&gt; 
+#&gt; $mulitple_parse
+#&gt; $mulitple_parse$raw
+#&gt; [1] &quot;configr, configr, yes, 1, config, config, no, 0&quot;
+#&gt; 
+#&gt; $mulitple_parse$parsed
+#&gt; [1] &quot;configr, configr, yes, 1, config, config, no, 0&quot;
 
-<span class="co"># glue parse</span>
-raw &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;!!glue{1:5}&quot;</span>, <span class="st">&quot;c&quot;</span>)
-list.raw &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">glue =</span> raw, <span class="dt">nochange =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+# glue parse
+raw &lt;- c(&quot;a&quot;, &quot;!!glue{1:5}&quot;, &quot;c&quot;)
+list.raw &lt;- list(glue = raw, nochange = 1:10)
 list.raw
-<span class="co">#&gt; $glue</span>
-<span class="co">#&gt; [1] &quot;a&quot;           &quot;!!glue{1:5}&quot; &quot;c&quot;          </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $nochange</span>
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span>
-expect.parsed.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>, <span class="st">&quot;c&quot;</span>)
-expect.parsed.<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">glue =</span> expect.parsed.<span class="dv">1</span>, <span class="dt">nochange =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
-<span class="kw">parse.extra</span>(list.raw, <span class="dt">glue.parse =</span> <span class="ot">TRUE</span>, <span class="dt">glue.flag =</span> <span class="st">&quot;!!glue&quot;</span>)
-<span class="co">#&gt; $glue</span>
-<span class="co">#&gt; [1] &quot;a&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;c&quot;</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $nochange</span>
-<span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></code></pre></div>
-</div>
-<div id="others" class="section level2">
+#&gt; $glue
+#&gt; [1] &quot;a&quot;           &quot;!!glue{1:5}&quot; &quot;c&quot;          
+#&gt; 
+#&gt; $nochange
+#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
+expect.parsed.1 &lt;- c(&quot;a&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;, &quot;c&quot;)
+expect.parsed.2 &lt;- list(glue = expect.parsed.1, nochange = 1:10)
+parse.extra(list.raw, glue.parse = TRUE, glue.flag = &quot;!!glue&quot;)
+#&gt; $glue
+#&gt; [1] &quot;a&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;c&quot;
+#&gt; 
+#&gt; $nochange
+#&gt;  [1]  1  2  3  4  5  6  7  8  9 10
+</code></pre>
+
 <h2>Others</h2>
+
 <p><code>config.section.del</code> can be used to delete a section of config, just do <code>config$section &lt;- NULL</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">config &lt;-<span class="st"> </span><span class="kw">read.config</span>(<span class="dt">file =</span> config.json, <span class="dt">extra.list =</span> <span class="kw">list</span>(<span class="dt">debug =</span> <span class="st">&quot;self&quot;</span>, <span class="dt">debug2 =</span> <span class="st">&quot;self2&quot;</span>), 
-  <span class="dt">other.config =</span> other.config)[sections]
-<span class="kw">names</span>(config)
-<span class="co">#&gt; [1] &quot;default&quot;            &quot;other_config_parse&quot; &quot;rcmd_parse&quot;        </span>
-<span class="co">#&gt; [4] &quot;mulitple_parse&quot;</span>
-config &lt;-<span class="st"> </span><span class="kw">config.sections.del</span>(config, <span class="st">'default'</span>)
-<span class="kw">names</span>(config)
-<span class="co">#&gt; [1] &quot;other_config_parse&quot; &quot;rcmd_parse&quot;         &quot;mulitple_parse&quot;</span></code></pre></div>
-</div>
 
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
+<pre><code class="r">config &lt;- read.config(file = config.json, extra.list = list(debug = &quot;self&quot;, debug2 = &quot;self2&quot;), 
+  other.config = other.config)[sections]
+names(config)
+#&gt; [1] &quot;default&quot;            &quot;other_config_parse&quot; &quot;rcmd_parse&quot;        
+#&gt; [4] &quot;mulitple_parse&quot;
+config &lt;- config.sections.del(config, &#39;default&#39;)
+names(config)
+#&gt; [1] &quot;other_config_parse&quot; &quot;rcmd_parse&quot;         &quot;mulitple_parse&quot;
+</code></pre>
 
 </body>
+
 </html>

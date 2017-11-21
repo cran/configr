@@ -43,6 +43,13 @@ eval.config.merge(file = config.json, sections = c('default', 'comments'))
 eval.config.merge(file = config.toml, sections = c('default', 'comments'))
 
 ## ---- echo = TRUE--------------------------------------------------------
+links <- c("https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/db_annovar.toml", 
+           "https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/db_main.toml", 
+           system.file('extdata', 'config.toml', package = "configr"))
+x <- fetch.config(links)
+x[c(1:5, length(x))]
+
+## ---- echo = TRUE--------------------------------------------------------
 # Convert YAML configuration file to JSON format
 out.json <- tempfile(, fileext = ".json")
 convert.config(file = config.yaml, out.file = out.json, convert.to = "JSON")
