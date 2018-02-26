@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jianfeng Li" />
 
-<meta name="date" content="2017-12-20" />
+<meta name="date" content="2018-02-26" />
 
 <title>Usage of configr</title>
 
@@ -52,7 +52,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 
 <h1 class="title toc-ignore">Usage of configr</h1>
 <h4 class="author"><em>Jianfeng Li</em></h4>
-<h4 class="date"><em>2017-12-20</em></h4>
+<h4 class="date"><em>2018-02-26</em></h4>
 
 
 
@@ -139,7 +139,7 @@ config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<s
 <span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
 <span class="co">#&gt; [1] &quot;yaml&quot;</span>
 <span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp08xv4h/Rinst1c8b014de4f03/configr/extdata/config.yaml&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp7QoJQI/Rinst1874f6498be7a/configr/extdata/config.yaml&quot;</span>
 
 <span class="co"># Read designated section</span>
 <span class="kw">eval.config</span>(<span class="dt">file =</span> config.json, <span class="dt">config =</span> <span class="st">&quot;comments&quot;</span>)
@@ -151,7 +151,7 @@ config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<s
 <span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
 <span class="co">#&gt; [1] &quot;json&quot;</span>
 <span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp08xv4h/Rinst1c8b014de4f03/configr/extdata/config.json&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp7QoJQI/Rinst1874f6498be7a/configr/extdata/config.json&quot;</span>
 
 <span class="co"># Read designated section with its one value</span>
 <span class="kw">eval.config</span>(<span class="dt">file =</span> config.ini, <span class="dt">config =</span> <span class="st">&quot;comments&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;version&quot;</span>)
@@ -169,7 +169,7 @@ config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<s
 <span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
 <span class="co">#&gt; [1] &quot;json&quot;</span>
 <span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp08xv4h/Rinst1c8b014de4f03/configr/extdata/config.json&quot;</span>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp7QoJQI/Rinst1874f6498be7a/configr/extdata/config.json&quot;</span>
 <span class="kw">eval.config.merge</span>(<span class="dt">file =</span> config.toml, <span class="dt">sections =</span> <span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'comments'</span>))
 <span class="co">#&gt; $debug</span>
 <span class="co">#&gt; [1] &quot;{{debug}} {{debug2}}&quot;</span>
@@ -182,7 +182,7 @@ config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<s
 <span class="co">#&gt; attr(,&quot;configtype&quot;)</span>
 <span class="co">#&gt; [1] &quot;toml&quot;</span>
 <span class="co">#&gt; attr(,&quot;file&quot;)</span>
-<span class="co">#&gt; [1] &quot;/tmp/Rtmp08xv4h/Rinst1c8b014de4f03/configr/extdata/config.toml&quot;</span></code></pre>
+<span class="co">#&gt; [1] &quot;/tmp/Rtmp7QoJQI/Rinst1874f6498be7a/configr/extdata/config.toml&quot;</span></code></pre>
 <p><code>fetch.config</code> can parse configuration files from internet and local that merged the files and return a list.</p>
 <pre class="sourceCode r"><code class="sourceCode r">links &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/db_annovar.toml&quot;</span>, 
            <span class="st">&quot;https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/db_main.toml&quot;</span>, 
@@ -464,7 +464,7 @@ config<span class="fl">.1</span>[sections]
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $rcmd_parse</span>
 <span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;2017-12-20&quot;</span>
+<span class="co">#&gt; [1] &quot;2018-02-26&quot;</span>
 <span class="kw">parse.extra</span>(config<span class="fl">.1</span>, <span class="dt">extra.list =</span> <span class="kw">list</span>(<span class="dt">debug =</span> <span class="st">&quot;self&quot;</span>, <span class="dt">debug2 =</span> <span class="st">&quot;self2&quot;</span>), 
   <span class="dt">other.config =</span> other.config, <span class="dt">rcmd.parse =</span> T)[sections]
 <span class="co">#&gt; $default</span>
@@ -482,7 +482,7 @@ config<span class="fl">.1</span>[sections]
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $rcmd_parse</span>
 <span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;2017-12-20&quot;</span>
+<span class="co">#&gt; [1] &quot;2018-02-26&quot;</span>
 
 
 sections &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'other_config_parse'</span>, <span class="st">'rcmd_parse'</span>, <span class="st">'mulitple_parse'</span>)
@@ -528,7 +528,7 @@ config<span class="fl">.1</span>[sections]
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $rcmd_parse</span>
 <span class="co">#&gt; $rcmd_parse$raw</span>
-<span class="co">#&gt; [1] &quot;2017-12-20&quot;</span>
+<span class="co">#&gt; [1] &quot;2018-02-26&quot;</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $mulitple_parse</span>
