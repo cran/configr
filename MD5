@@ -1,5 +1,5 @@
-1669b22e0e0cbc00142886da39474f6f *ChangeLog
-2c0451e917fd6e421c9dffdf92459858 *DESCRIPTION
+555f2f1c02f5d77ba637899872b6c117 *ChangeLog
+ab1482a28468d6f6060bd23c227e6e43 *DESCRIPTION
 4842fc3ffc3a7a8011c31023ad4d575f *LICENSE
 a2666a3fecdd726a2023171090f5a675 *NAMESPACE
 7b494fef2024185134bdc74f62d9d8fb *NEWS.md
@@ -15,13 +15,13 @@ f440a71e5e2952216b6028c55a8d0962 *R/parse.R
 39f21075b6d3a545f47d753e4967a7f2 *R/utils.R
 00ff1fb14f2ff8a2684ae421b9fbdce6 *R/write.R
 39dc50835ae83358506e35f25a2f870b *README.md
-5c7618d2e490ec49de5fa3ed405ee4ac *build/vignette.rds
+8603088664e89adf64b155e0384c2fbc *build/vignette.rds
 4c8b4b41bd9125a7ca5db8cb011107be *inst/doc/configr.R
-ee95764eee6446fbebc48cadf6d1b24e *inst/doc/configr.Rmd
-7de8f0ad039b41a57c275cd5912761bc *inst/doc/configr.html
+1ae6678942b390a283693776f8e6e03c *inst/doc/configr.Rmd
+848333f9bc422001bffaa9b9eaf5f1ac *inst/doc/configr.html
 34cc6c3da0aa50b1f5c7fd6137a49c2e *inst/doc/filetypes.R
-4c077e96a49850335a107024c17fa452 *inst/doc/filetypes.Rmd
-958491a969c118ace79af6e8d07fe9da *inst/doc/filetypes.html
+d9f1b229ef9c39c14afdce87a583947d *inst/doc/filetypes.Rmd
+24298adb534f2124265435b0a3408220 *inst/doc/filetypes.html
 e045c1064efd84673bc1915f03eb316c *inst/extdata/config.error.ini
 c820c25c80a8cad569e2ed230550eb2c *inst/extdata/config.error.json
 39de8e3e63c189ec24b5d56519e44f7b *inst/extdata/config.error.toml
@@ -63,5 +63,5 @@ e15a3f07f11b34e0bbf557c3592417dc *tests/testthat/test_h_show.error.R
 9df0983142f74c32fa7d4eba619e487a *tests/testthat/test_k_parse.R
 c5ea1fe47ca1cde5b28a1b791f88fc7b *tests/testthat/test_l_del.R
 9bd4b6642fb7ee9d32111a23ce4cdd28 *tests/testthat/test_m_fetch.R
-ee95764eee6446fbebc48cadf6d1b24e *vignettes/configr.Rmd
-4c077e96a49850335a107024c17fa452 *vignettes/filetypes.Rmd
+1ae6678942b390a283693776f8e6e03c *vignettes/configr.Rmd
+d9f1b229ef9c39c14afdce87a583947d *vignettes/filetypes.Rmd
