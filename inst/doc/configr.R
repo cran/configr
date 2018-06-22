@@ -51,7 +51,7 @@ x[c(1:5, length(x))]
 
 ## ---- echo = TRUE--------------------------------------------------------
 # Convert YAML configuration file to JSON format
-out.json <- tempfile(, fileext = ".json")
+out.json <- tempfile(fileext = ".json")
 convert.config(file = config.yaml, out.file = out.json, convert.to = "JSON")
 get.config.type(out.json)
 
@@ -112,4 +112,15 @@ config <- read.config(file = config.json, extra.list = list(debug = "self", debu
 names(config)
 config <- config.sections.del(config, 'default')
 names(config)
+
+## ---- echo = TRUE--------------------------------------------------------
+json_string <- '{"city" : "Crich"}\n'
+yaml_string <- 'foo: 123\n'
+json_config <- str2config(json_string)
+yaml_config <- str2config(yaml_string)
+print(json_config)
+print(yaml_config)
+
+## ----echo=FALSE----------------------------------------------------------
+sessionInfo()
 

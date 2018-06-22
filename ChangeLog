@@ -1,3 +1,12 @@
+2018-06-22 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* add function str2config in R/read.R
+		* add function config.help in R/help.R
+
+2018-05-29 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
+
+		* fix warning in extra.list parse using latest stringi
+
 2018-05-03 Li Jianfeng <lee_jianfeng@sjtu.edu.cn>
 
 		* update vignettes theme
