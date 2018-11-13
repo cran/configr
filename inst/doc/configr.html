@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jianfeng Li" />
 
-<meta name="date" content="2018-06-22" />
+<meta name="date" content="2018-11-13" />
 
 <title>Usage of configr</title>
 
@@ -109,7 +109,7 @@ code > span.ot { color: #007020; }
 <section class="page-header">
 <h1 class="title toc-ignore project-name">Usage of configr</h1>
 <h4 class="author project-author">Jianfeng Li</h4>
-<h4 class="date project-date">2018-06-22</h4>
+<h4 class="date project-date">2018-11-13</h4>
 </section>
 
 
@@ -136,7 +136,8 @@ code > span.ot { color: #007020; }
 <a class="sourceLine" id="cb1-2" data-line-number="2">config.json &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.json'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">config.ini &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.ini'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)</a>
 <a class="sourceLine" id="cb1-4" data-line-number="4">config.yaml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.yaml'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.toml'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-5" data-line-number="5">config.toml &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.toml'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">config.glob &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.global.toml'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)</a></code></pre></div>
 </div>
 <div id="check-the-configuration-file-type" class="section level2">
 <h2>Check the configuration file type</h2>
@@ -211,7 +212,7 @@ code > span.ot { color: #007020; }
 <a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; attr(,&quot;configtype&quot;)</span></a>
 <a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt; [1] &quot;yaml&quot;</span></a>
 <a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; attr(,&quot;file&quot;)</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; [1] &quot;/private/var/folders/nc/yl5qhkkn6vxf_m7s_yz2kzvh0000gn/T/RtmpZxyul9/Rinst13ad96b1da2b2/configr/extdata/config.yaml&quot;</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; [1] &quot;/private/var/folders/nc/yl5qhkkn6vxf_m7s_yz2kzvh0000gn/T/RtmpB61y9E/Rinst61f92fc82626/configr/extdata/config.yaml&quot;</span></a>
 <a class="sourceLine" id="cb5-13" data-line-number="13"></a>
 <a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co"># Read designated section</span></a>
 <a class="sourceLine" id="cb5-15" data-line-number="15"><span class="kw">eval.config</span>(<span class="dt">file =</span> config.json, <span class="dt">config =</span> <span class="st">&quot;comments&quot;</span>)</a>
@@ -223,7 +224,7 @@ code > span.ot { color: #007020; }
 <a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; attr(,&quot;configtype&quot;)</span></a>
 <a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; [1] &quot;json&quot;</span></a>
 <a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; attr(,&quot;file&quot;)</span></a>
-<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; [1] &quot;/private/var/folders/nc/yl5qhkkn6vxf_m7s_yz2kzvh0000gn/T/RtmpZxyul9/Rinst13ad96b1da2b2/configr/extdata/config.json&quot;</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; [1] &quot;/private/var/folders/nc/yl5qhkkn6vxf_m7s_yz2kzvh0000gn/T/RtmpB61y9E/Rinst61f92fc82626/configr/extdata/config.json&quot;</span></a>
 <a class="sourceLine" id="cb5-25" data-line-number="25"></a>
 <a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co"># Read designated section with its one value</span></a>
 <a class="sourceLine" id="cb5-27" data-line-number="27"><span class="kw">eval.config</span>(<span class="dt">file =</span> config.ini, <span class="dt">config =</span> <span class="st">&quot;comments&quot;</span>, <span class="dt">value =</span> <span class="st">&quot;version&quot;</span>)</a>
@@ -241,7 +242,7 @@ code > span.ot { color: #007020; }
 <a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; attr(,&quot;configtype&quot;)</span></a>
 <a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; [1] &quot;json&quot;</span></a>
 <a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt; attr(,&quot;file&quot;)</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; [1] &quot;/private/var/folders/nc/yl5qhkkn6vxf_m7s_yz2kzvh0000gn/T/RtmpZxyul9/Rinst13ad96b1da2b2/configr/extdata/config.json&quot;</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt; [1] &quot;/private/var/folders/nc/yl5qhkkn6vxf_m7s_yz2kzvh0000gn/T/RtmpB61y9E/Rinst61f92fc82626/configr/extdata/config.json&quot;</span></a>
 <a class="sourceLine" id="cb6-14" data-line-number="14"><span class="kw">eval.config.merge</span>(<span class="dt">file =</span> config.toml, <span class="dt">sections =</span> <span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'comments'</span>))</a>
 <a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; $debug</span></a>
 <a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt; [1] &quot;{{debug}} {{debug2}}&quot;</span></a>
@@ -254,7 +255,7 @@ code > span.ot { color: #007020; }
 <a class="sourceLine" id="cb6-23" data-line-number="23"><span class="co">#&gt; attr(,&quot;configtype&quot;)</span></a>
 <a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#&gt; [1] &quot;toml&quot;</span></a>
 <a class="sourceLine" id="cb6-25" data-line-number="25"><span class="co">#&gt; attr(,&quot;file&quot;)</span></a>
-<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt; [1] &quot;/private/var/folders/nc/yl5qhkkn6vxf_m7s_yz2kzvh0000gn/T/RtmpZxyul9/Rinst13ad96b1da2b2/configr/extdata/config.toml&quot;</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">#&gt; [1] &quot;/private/var/folders/nc/yl5qhkkn6vxf_m7s_yz2kzvh0000gn/T/RtmpB61y9E/Rinst61f92fc82626/configr/extdata/config.toml&quot;</span></a></code></pre></div>
 <p><code>fetch.config</code> can parse configuration files from internet and local that merged the files and return a list.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">links &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/db_annovar.toml&quot;</span>, </a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">           <span class="st">&quot;https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/db_main.toml&quot;</span>, </a>
@@ -438,6 +439,7 @@ code > span.ot { color: #007020; }
 <li><code>rcmd.parse</code> can be used to parse the value of <code>@&gt;@str_replace('config','g$','gr')@&lt;@</code> to <code>configr</code> if you setted <code>rcmd.parse = TRUE</code>.</li>
 <li><code>bash.parse</code> can be used to parse the value of <code>#&gt;#echo bash#&lt;#</code> to <code>bash</code> if you setted <code>bash.parse = TRUE</code>.</li>
 <li><code>glue.parse</code> can be used to paste the value of <code>!!glue {1:5}</code> to <code>[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;5&quot;]</code>; <code>!!glue_numeric {1:5}</code> to [1, 2, 3, 4, 5]</li>
+<li><code>global.vars.field</code> can be used to parse the internal values using the given top level fields default use <code>global_vars</code> (new feature in v0.3.4)</li>
 </ul>
 <p><strong>Note:</strong> <code>glue.parse</code> using the <code>glue</code> package <code>glue</code> function to do that. Just like glue(‘{1:5}’) and be processed by unname(unlist(x)). The <code>!!glue</code> can be changed if you setted <code>glue.flag</code>. It is a remarkable fact that only contain the <code>glue.flag</code> character be parsed and the order of item will be changed if the <code>glue</code> result were multiple values. e.g. <code>['{a}', '!!glue {1:5}', '{{a}}']</code> will be parsed to <code>['{a}', '1', '2', '3', '4', '5', '{{a}}']</code></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">other.config &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">'extdata'</span>, <span class="st">'config.other.yaml'</span>, <span class="dt">package=</span><span class="st">'configr'</span>)</a>
@@ -532,7 +534,7 @@ code > span.ot { color: #007020; }
 <a class="sourceLine" id="cb9-90" data-line-number="90"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb9-91" data-line-number="91"><span class="co">#&gt; $rcmd_parse</span></a>
 <a class="sourceLine" id="cb9-92" data-line-number="92"><span class="co">#&gt; $rcmd_parse$raw</span></a>
-<a class="sourceLine" id="cb9-93" data-line-number="93"><span class="co">#&gt; [1] &quot;2018-06-22&quot;</span></a>
+<a class="sourceLine" id="cb9-93" data-line-number="93"><span class="co">#&gt; [1] &quot;2018-11-13&quot;</span></a>
 <a class="sourceLine" id="cb9-94" data-line-number="94"><span class="kw">parse.extra</span>(config<span class="fl">.1</span>, <span class="dt">extra.list =</span> <span class="kw">list</span>(<span class="dt">debug =</span> <span class="st">&quot;self&quot;</span>, <span class="dt">debug2 =</span> <span class="st">&quot;self2&quot;</span>), </a>
 <a class="sourceLine" id="cb9-95" data-line-number="95">  <span class="dt">other.config =</span> other.config, <span class="dt">rcmd.parse =</span> T)[sections]</a>
 <a class="sourceLine" id="cb9-96" data-line-number="96"><span class="co">#&gt; $default</span></a>
@@ -550,7 +552,7 @@ code > span.ot { color: #007020; }
 <a class="sourceLine" id="cb9-108" data-line-number="108"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb9-109" data-line-number="109"><span class="co">#&gt; $rcmd_parse</span></a>
 <a class="sourceLine" id="cb9-110" data-line-number="110"><span class="co">#&gt; $rcmd_parse$raw</span></a>
-<a class="sourceLine" id="cb9-111" data-line-number="111"><span class="co">#&gt; [1] &quot;2018-06-22&quot;</span></a>
+<a class="sourceLine" id="cb9-111" data-line-number="111"><span class="co">#&gt; [1] &quot;2018-11-13&quot;</span></a>
 <a class="sourceLine" id="cb9-112" data-line-number="112"></a>
 <a class="sourceLine" id="cb9-113" data-line-number="113"></a>
 <a class="sourceLine" id="cb9-114" data-line-number="114">sections &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'default'</span>, <span class="st">'other_config_parse'</span>, <span class="st">'rcmd_parse'</span>, <span class="st">'mulitple_parse'</span>)</a>
@@ -596,7 +598,7 @@ code > span.ot { color: #007020; }
 <a class="sourceLine" id="cb9-154" data-line-number="154"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb9-155" data-line-number="155"><span class="co">#&gt; $rcmd_parse</span></a>
 <a class="sourceLine" id="cb9-156" data-line-number="156"><span class="co">#&gt; $rcmd_parse$raw</span></a>
-<a class="sourceLine" id="cb9-157" data-line-number="157"><span class="co">#&gt; [1] &quot;2018-06-22&quot;</span></a>
+<a class="sourceLine" id="cb9-157" data-line-number="157"><span class="co">#&gt; [1] &quot;2018-11-13&quot;</span></a>
 <a class="sourceLine" id="cb9-158" data-line-number="158"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb9-159" data-line-number="159"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb9-160" data-line-number="160"><span class="co">#&gt; $mulitple_parse</span></a>
@@ -622,7 +624,28 @@ code > span.ot { color: #007020; }
 <a class="sourceLine" id="cb9-180" data-line-number="180"><span class="co">#&gt; [1] &quot;a&quot; &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; &quot;5&quot; &quot;c&quot;</span></a>
 <a class="sourceLine" id="cb9-181" data-line-number="181"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb9-182" data-line-number="182"><span class="co">#&gt; $nochange</span></a>
-<a class="sourceLine" id="cb9-183" data-line-number="183"><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></a></code></pre></div>
+<a class="sourceLine" id="cb9-183" data-line-number="183"><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></a>
+<a class="sourceLine" id="cb9-184" data-line-number="184"></a>
+<a class="sourceLine" id="cb9-185" data-line-number="185"></a>
+<a class="sourceLine" id="cb9-186" data-line-number="186"><span class="kw">read.config</span>(config.glob, <span class="dt">global.vars.field =</span> <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb9-187" data-line-number="187"><span class="co">#&gt; List of 5</span></a>
+<a class="sourceLine" id="cb9-188" data-line-number="188"><span class="co">#&gt;  $ global_vars: chr [1:2] &quot;gvar_1&quot; &quot;gvar_2&quot;</span></a>
+<a class="sourceLine" id="cb9-189" data-line-number="189"><span class="co">#&gt;  $ gvar_1     : chr &quot;G1&quot;</span></a>
+<a class="sourceLine" id="cb9-190" data-line-number="190"><span class="co">#&gt;  $ gvar_2     : chr &quot;G2&quot;</span></a>
+<a class="sourceLine" id="cb9-191" data-line-number="191"><span class="co">#&gt;  $ subsection :List of 2</span></a>
+<a class="sourceLine" id="cb9-192" data-line-number="192"><span class="co">#&gt;   ..$ value_1: chr &quot;{{gvar_1}}/value_1&quot;</span></a>
+<a class="sourceLine" id="cb9-193" data-line-number="193"><span class="co">#&gt;   ..$ value_2: chr &quot;{{gvar_2}}/value_2&quot;</span></a>
+<a class="sourceLine" id="cb9-194" data-line-number="194"><span class="co">#&gt;  $ title      : chr &quot;Demo of global vars of configuration files&quot;</span></a>
+<a class="sourceLine" id="cb9-195" data-line-number="195"></a>
+<a class="sourceLine" id="cb9-196" data-line-number="196"><span class="kw">read.config</span>(config.glob)</a>
+<a class="sourceLine" id="cb9-197" data-line-number="197"><span class="co">#&gt; List of 5</span></a>
+<a class="sourceLine" id="cb9-198" data-line-number="198"><span class="co">#&gt;  $ global_vars: chr [1:2] &quot;gvar_1&quot; &quot;gvar_2&quot;</span></a>
+<a class="sourceLine" id="cb9-199" data-line-number="199"><span class="co">#&gt;  $ gvar_1     : chr &quot;G1&quot;</span></a>
+<a class="sourceLine" id="cb9-200" data-line-number="200"><span class="co">#&gt;  $ gvar_2     : chr &quot;G2&quot;</span></a>
+<a class="sourceLine" id="cb9-201" data-line-number="201"><span class="co">#&gt;  $ subsection :List of 2</span></a>
+<a class="sourceLine" id="cb9-202" data-line-number="202"><span class="co">#&gt;   ..$ value_1: chr &quot;G1/value_1&quot;</span></a>
+<a class="sourceLine" id="cb9-203" data-line-number="203"><span class="co">#&gt;   ..$ value_2: chr &quot;G2/value_2&quot;</span></a>
+<a class="sourceLine" id="cb9-204" data-line-number="204"><span class="co">#&gt;  $ title      : chr &quot;Demo of global vars of configuration files&quot;</span></a></code></pre></div>
 </div>
 <div id="external-urls-about-configuration-format-and-others" class="section level2">
 <h2>External urls about configuration format and others</h2>
@@ -660,9 +683,9 @@ code > span.ot { color: #007020; }
 <div id="session-info" class="section level2">
 <h2>Session info</h2>
 <p>Here is the output of <code>sessionInfo()</code> on the system on which this document was compiled:</p>
-<pre><code>#&gt; R version 3.5.0 (2018-04-23)
+<pre><code>#&gt; R version 3.5.1 (2018-07-02)
 #&gt; Platform: x86_64-apple-darwin15.6.0 (64-bit)
-#&gt; Running under: macOS High Sierra 10.13.5
+#&gt; Running under: macOS  10.14.1
 #&gt; 
 #&gt; Matrix products: default
 #&gt; BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
@@ -675,14 +698,14 @@ code > span.ot { color: #007020; }
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] configr_0.3.3
+#&gt; [1] configr_0.3.4
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
-#&gt;  [1] Rcpp_0.12.17    digest_0.6.15   rprojroot_1.3-2 jsonlite_1.5   
-#&gt;  [5] backports_1.1.2 magrittr_1.5    evaluate_0.10.1 stringi_1.2.2  
-#&gt;  [9] ini_0.3.1       rmarkdown_1.10  tools_3.5.0     stringr_1.3.1  
-#&gt; [13] glue_1.2.0      prettydoc_0.2.1 yaml_2.1.19     RcppTOML_0.1.3 
-#&gt; [17] compiler_3.5.0  htmltools_0.3.6 knitr_1.20</code></pre>
+#&gt;  [1] Rcpp_1.0.0      digest_0.6.18   rprojroot_1.3-2 jsonlite_1.5   
+#&gt;  [5] backports_1.1.2 magrittr_1.5    evaluate_0.12   stringi_1.2.4  
+#&gt;  [9] ini_0.3.1       rmarkdown_1.10  tools_3.5.1     stringr_1.3.1  
+#&gt; [13] glue_1.3.0      prettydoc_0.2.1 yaml_2.2.0      RcppTOML_0.1.5 
+#&gt; [17] compiler_3.5.1  htmltools_0.3.6 knitr_1.20</code></pre>
 </div>
 </section>
 

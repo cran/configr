@@ -7,6 +7,7 @@ config.json <- system.file('extdata', 'config.json', package='configr')
 config.ini <- system.file('extdata', 'config.ini', package='configr')
 config.yaml <- system.file('extdata', 'config.yaml', package='configr')
 config.toml <- system.file('extdata', 'config.toml', package='configr')
+config.glob <- system.file('extdata', 'config.global.toml', package='configr')
 
 ## ---- echo = TRUE--------------------------------------------------------
 is.json.file(config.json)
@@ -104,6 +105,11 @@ list.raw
 expect.parsed.1 <- c("a", "1", "2", "3", "4", "5", "c")
 expect.parsed.2 <- list(glue = expect.parsed.1, nochange = 1:10)
 parse.extra(list.raw, glue.parse = TRUE, glue.flag = "!!glue")
+
+
+read.config(config.glob, global.vars.field = NULL)
+
+read.config(config.glob)
 
 
 ## ---- echo = TRUE--------------------------------------------------------

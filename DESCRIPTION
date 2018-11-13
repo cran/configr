@@ -2,7 +2,7 @@ Package: configr
 Type: Package
 Title: An Implementation of Parsing and Writing Configuration File
         (JSON/INI/YAML/TOML)
-Version: 0.3.3
+Version: 0.3.4
 Authors@R: person("Jianfeng", "Li", email = "lee_jianfeng@sjtu.edu.cn", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-2349-208X"))
 Description: 
     Implements the JSON, INI, YAML and TOML parser for R setting and writing of configuration file. The functionality of this package is similar to that of package 'config'. 
@@ -14,12 +14,12 @@ Encoding: UTF-8
 LazyData: true
 Imports: jsonlite (>= 1.2), ini (>= 0.2), yaml (>= 2.1.3), RcppTOML (>=
         0.1.3), stringr (>= 1.2.0), utils, glue
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Suggests: testthat, knitr, rmarkdown, prettydoc
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2018-06-22 14:19:51 UTC; ljf
+Packaged: 2018-11-13 15:51:09 UTC; ljf
 Author: Jianfeng Li [aut, cre] (<https://orcid.org/0000-0003-2349-208X>)
 Maintainer: Jianfeng Li <lee_jianfeng@sjtu.edu.cn>
 Repository: CRAN
-Date/Publication: 2018-06-22 15:12:57 UTC
+Date/Publication: 2018-11-13 18:10:02 UTC
