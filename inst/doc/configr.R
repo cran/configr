@@ -1,7 +1,7 @@
-## ---- echo = FALSE-------------------------------------------------------
+## ---- echo = FALSE------------------------------------------------------------
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 library(configr)
 config.json <- system.file('extdata', 'config.json', package='configr')
 config.ini <- system.file('extdata', 'config.ini', package='configr')
@@ -9,7 +9,7 @@ config.yaml <- system.file('extdata', 'config.yaml', package='configr')
 config.toml <- system.file('extdata', 'config.toml', package='configr')
 config.glob <- system.file('extdata', 'config.global.toml', package='configr')
 
-## ---- echo = TRUE--------------------------------------------------------
+## ---- echo = TRUE-------------------------------------------------------------
 is.json.file(config.json)
 is.toml.file(config.toml)
 is.ini.file(config.ini)
@@ -19,16 +19,16 @@ get.config.type(config.yaml)
 get.config.type(config.ini)
 get.config.type(config.toml)
 
-## ---- echo = TRUE--------------------------------------------------------
+## ---- echo = TRUE-------------------------------------------------------------
 eval.config.sections(config.ini)
 eval.config.sections(config.toml)
 
-## ---- echo = TRUE--------------------------------------------------------
+## ---- echo = TRUE-------------------------------------------------------------
 # Read in R as a list (JSON/INI/YAML/TOML be suported)
 # fromJSON/read.ini/readLines/yaml.load  parameters can be automatch by parameter name (encoding .etc.)
 read.config(file = config.toml)
 
-## ---- echo = TRUE--------------------------------------------------------
+## ---- echo = TRUE-------------------------------------------------------------
 # Get the same obj with config package, only get the 
 # 'default or R_CONFIG_ACTIVE config sets' in config.cfg or R_CONFIGFILE_ACTIVE
 eval.config(file = config.yaml)
@@ -39,18 +39,18 @@ eval.config(file = config.json, config = "comments")
 # Read designated section with its one value
 eval.config(file = config.ini, config = "comments", value = "version")
 
-## ---- echo = TRUE--------------------------------------------------------
+## ---- echo = TRUE-------------------------------------------------------------
 eval.config.merge(file = config.json, sections = c('default', 'comments'))
 eval.config.merge(file = config.toml, sections = c('default', 'comments'))
 
-## ---- echo = TRUE--------------------------------------------------------
+## ---- echo = TRUE-------------------------------------------------------------
 links <- c("https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/db_annovar.toml", 
            "https://raw.githubusercontent.com/JhuangLab/BioInstaller/master/inst/extdata/config/db/db_main.toml", 
            system.file('extdata', 'config.toml', package = "configr"))
 x <- fetch.config(links)
 x[c(1:5, length(x))]
 
-## ---- echo = TRUE--------------------------------------------------------
+## ---- echo = TRUE-------------------------------------------------------------
 # Convert YAML configuration file to JSON format
 out.json <- tempfile(fileext = ".json")
 convert.config(file = config.yaml, out.file = out.json, convert.to = "JSON")
@@ -70,7 +70,7 @@ get.config.type(out.fn)
 #write.config(config.dat = list.test, file.path = out.fn, write.type = "yaml", sections = "a", indent = 4)
 #get.config.type(out.fn)
 
-## ---- echo = TRUE--------------------------------------------------------
+## ---- echo = TRUE-------------------------------------------------------------
 other.config <- system.file('extdata', 'config.other.yaml', package='configr')
 
 read.config(file = other.config)
@@ -112,14 +112,14 @@ read.config(config.glob, global.vars.field = NULL)
 read.config(config.glob)
 
 
-## ---- echo = TRUE--------------------------------------------------------
+## ---- echo = TRUE-------------------------------------------------------------
 config <- read.config(file = config.json, extra.list = list(debug = "self", debug2 = "self2"), 
   other.config = other.config)[sections]
 names(config)
 config <- config.sections.del(config, 'default')
 names(config)
 
-## ---- echo = TRUE--------------------------------------------------------
+## ---- echo = TRUE-------------------------------------------------------------
 json_string <- '{"city" : "Crich"}\n'
 yaml_string <- 'foo: 123\n'
 json_config <- str2config(json_string)
@@ -127,6 +127,6 @@ yaml_config <- str2config(yaml_string)
 print(json_config)
 print(yaml_config)
 
-## ----echo=FALSE----------------------------------------------------------
+## ----echo=FALSE---------------------------------------------------------------
 sessionInfo()
 
